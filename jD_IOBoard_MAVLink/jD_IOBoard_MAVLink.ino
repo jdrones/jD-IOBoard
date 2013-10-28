@@ -382,7 +382,7 @@ void loop()
     updateBase();
   
     if(enable_mav_request == 1) { //Request rate control. 
-      DPL("IN ENA REQ");
+     // DPL("IN ENA REQ");
       // During rate requsst, LEFT/RIGHT outputs are HIGH
       digitalWrite(LEFT, EN);
       digitalWrite(RIGHT, EN);
