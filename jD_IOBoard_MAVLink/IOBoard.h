@@ -1,5 +1,6 @@
 //
 // jD-IOBoard definitions
+// 27.10.2013
 
 // Some basic defualts
 #define EN  1     // Enable value
