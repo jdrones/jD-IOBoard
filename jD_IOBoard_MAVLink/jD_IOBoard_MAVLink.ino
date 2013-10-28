@@ -1,5 +1,7 @@
 /*
 
+ Only works in UP-Work
+
  Copyright (c) 2012.  All rights reserved.
  An Open Source Arduino based jD_IOBoard driver for MAVLink
  
