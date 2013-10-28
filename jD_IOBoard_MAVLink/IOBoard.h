@@ -1,4 +1,5 @@
-
+//
+// jD-IOBoard definitions
 
 // Some basic defualts
 #define EN  1     // Enable value
