@@ -1,5 +1,7 @@
 /*
 
+ jp changed master funcs
+
  file     : frsky_telemetry_feeder
  version  : v1.0, 24.06.2012
  author   : Jani Hirvinen, jani@jd.....com
