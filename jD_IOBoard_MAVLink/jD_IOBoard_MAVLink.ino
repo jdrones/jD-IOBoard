@@ -144,6 +144,7 @@
 //#define DUMPEEPROMTELEMETRY   // Should not be activated in repository code, only for debug
 #define NEWPAT
 #define HWRESET
+
 /* *************************************************/
 /* ***************** DEFINITIONS *******************/
 

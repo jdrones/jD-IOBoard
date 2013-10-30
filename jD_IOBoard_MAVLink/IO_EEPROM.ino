@@ -111,12 +111,12 @@ void writeFactorySettings() {
 
 
  // Default locations of different output LEDs, DEC
- writeEEPROM(LEFT_IO_ADDR, 8);
+ writeEEPROM(LEFT_IO_ADDR, 8);  
  writeEEPROM(RIGHT_IO_ADDR, 4);
  writeEEPROM(FRONT_IO_ADDR, 9);
- writeEEPROM(REAR_IO_ADDR, 10);
+ writeEEPROM(REAR_IO_ADDR, 7); //PinOld 10
  writeEEPROM(FLASH_IO_ADDR, 0);      // Future extra flasher 
- writeEEPROM(LEDPIN_IO_ADDR, 13);    // HeartBeat LEDPIN, should be 13 
+ writeEEPROM(LEDPIN_IO_ADDR, 10);    // HeartBeat LEDPIN, should be 13 
 
 
 
