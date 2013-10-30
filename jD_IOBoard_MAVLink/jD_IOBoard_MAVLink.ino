@@ -414,14 +414,14 @@ void loop()
 //      messageCounter = 0;
       LeRiPatt = 6;
     } 
-    
+
     read_mavlink();
     mavlinkTimer.Run();
 
     updatePWM(); 
     update_FrSky();
 
-  } else AllOff();
+  } //else AllOff();
 
 }
 
