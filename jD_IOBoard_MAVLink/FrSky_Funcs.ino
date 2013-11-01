@@ -207,7 +207,7 @@ byte addPayload(byte DataID) {
 */
     // Little Endian exception
     case 0x06:  // Voltage, first 4 bits are cell number, rest 12 are voltage in 1/500v steps, scale 0-4.2v
-      if (cell_count < cell_numb) {
+ /*     if (cell_count < cell_numb) {
         int tmp1 = FixInt(cellV[cell_count], 2);
   
         outBuff[payloadLen + 0] = 0x06;
@@ -221,7 +221,36 @@ byte addPayload(byte DataID) {
         cell_count++;
       } else {
         cell_count = 0; 
-      }
+      }*/
+      
+      //==================Chagne Data Batt volt for Sending===========//
+       if(Frsky_Count_Order_Batt < Batt_Cell_Detect)
+       {
+          Frsky_Batt_Volt_A=((((iob_vbat_A/Batt_Cell_Detect)*2100)/4.2));
+          
+          DPL(Frsky_Count_Order_Batt);
+         outBuff[payloadLen + 0] = 0x06;
+         outBuff[payloadLen + 1] = (Frsky_Count_Order_Batt<<4)&0xF0 | ((Frsky_Batt_Volt_A>>8)&0x0F);  //(iob_vbat_A)
+         outBuff[payloadLen + 2] = (Frsky_Batt_Volt_A)&0xFF;
+         
+         Frsky_Count_Order_Batt++;
+         if(Frsky_Count_Order_Batt==Batt_Cell_Detect)
+         {
+           Frsky_Count_Order_Batt=0;
+         }
+         
+         addedLen = 3;
+       }
+       else
+       {
+         Frsky_Count_Order_Batt=0;
+       }
+       
+      /* outBuff[payloadLen + 0] = 0x06;
+       outBuff[payloadLen + 1] = 0x06;
+       outBuff[payloadLen + 2] = 0xC3;
+       addedLen = 3;*/
+      //==============================================================//
       break;
       
     case 0x10:  // Altitude, before "." works on FLD-02, Taranis no

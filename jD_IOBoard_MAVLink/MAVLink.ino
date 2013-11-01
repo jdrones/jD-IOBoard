@@ -26,6 +26,8 @@ static uint8_t crlf_count = 0;
 static int packet_drops = 0;
 static int parse_error = 0;
 
+
+
 void request_mavlink_rates()
 {
   DPL("Requesting rates");
@@ -124,7 +126,7 @@ void read_mavlink(){
               DPN(iob_vbat_A);
               DPL(" ");
             } 
-#endif           
+#endif          
           }
           break;
           
@@ -137,6 +139,32 @@ void read_mavlink(){
             uint16_t tmp = mavlink_msg_sys_status_get_battery_remaining(&msg);
 
             cellVvalue();
+            
+            //---------Backup Battery Frist state--------//
+            if(Batt_SR.Plugin_Frist!=TRUE&&iob_vbat_A>9)
+            {
+              Batt_SR.Plugin_Frist=TRUE;
+              Batt_Volte_Backup=iob_vbat_A;
+              //----------Set Cell Active----------
+              if(iob_vbat_A>18)
+              { 
+                 Batt_Cell_Detect=0x06;
+              }
+              else if(iob_vbat_A>15)
+              {
+                Batt_Cell_Detect=0x05;
+              }
+              else if(iob_vbat_A>12)
+              {
+                Batt_Cell_Detect=0x04;
+              }
+              else if(iob_vbat_A>9)
+              {
+                Batt_Cell_Detect=0x03;
+              }   
+              Frsky_Count_Order_Batt=0;       
+            }
+            //---------Battery Backup------------------//
 
 //            if (tmp < 13) {
 //              iob_battery_remaining_A = 0;
@@ -288,4 +316,7 @@ void cellVvalue() {
     cellV[i]=val;
   }
 }
+
+
+
 
