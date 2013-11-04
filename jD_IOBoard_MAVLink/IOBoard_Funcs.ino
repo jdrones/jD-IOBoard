@@ -168,10 +168,29 @@ void updatePWM() {
       prePwm = curPwm;
     if (pwm1dir) {
       pwm1++;
-    } else pwm1--;
+    } 
+    else 
+    {
+      pwm1--;
+    }
     if(pwm1 >= 255 && pwm1dir == 1) pwm1dir = 0;
     if(pwm1 <= 20 && pwm1dir == 0) pwm1dir = 1;
     analogWrite(FRONT, pwm1);
+    
+    if(iob_pitch>0)
+    {
+      analogWrite(RIGHT,(iob_roll*2));
+    }
+    else if(iob_pitch<0)
+    {
+      analogWrite(LEFT,abs(iob_roll)*2);
+    }
+    else
+    {
+      analogWrite(RIGHT,0);
+      analogWrite(LEFT,0);
+    }
+    
     }
 }
 

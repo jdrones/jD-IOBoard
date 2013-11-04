@@ -191,6 +191,9 @@ void read_mavlink(){
           {
 //         dbPRNL("MAV ID GPS");
             iob_fix_type = mavlink_msg_gps_raw_get_fix_type(&msg);
+            
+            iob_hdop=mavlink_msg_gps_raw_int_get_eph(&msg);
+            iob_vdop=mavlink_msg_gps_raw_int_get_epv(&msg);
 //            dbPRN("GPS FIX: ");
 //            dbSerial.println(iob_fix_type);
           }

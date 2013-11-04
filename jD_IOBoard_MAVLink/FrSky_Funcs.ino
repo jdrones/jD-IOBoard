@@ -227,23 +227,22 @@ byte addPayload(byte DataID) {
        if(Frsky_Count_Order_Batt < Batt_Cell_Detect)
        {
           Frsky_Batt_Volt_A=((((iob_vbat_A/Batt_Cell_Detect)*2100)/4.2));
-          
-          DPL(Frsky_Count_Order_Batt);
+          //DPL("Batt Cell--> ");
+          //DPL(Batt_Cell_Detect);
+          //DPL(Frsky_Count_Order_Batt);
          outBuff[payloadLen + 0] = 0x06;
          outBuff[payloadLen + 1] = (Frsky_Count_Order_Batt<<4)&0xF0 | ((Frsky_Batt_Volt_A>>8)&0x0F);  //(iob_vbat_A)
          outBuff[payloadLen + 2] = (Frsky_Batt_Volt_A)&0xFF;
          
          Frsky_Count_Order_Batt++;
-         if(Frsky_Count_Order_Batt==Batt_Cell_Detect)
-         {
-           Frsky_Count_Order_Batt=0;
-         }
+
          
          addedLen = 3;
        }
        else
        {
          Frsky_Count_Order_Batt=0;
+         addedLen=0;
        }
        
       /* outBuff[payloadLen + 0] = 0x06;
@@ -388,10 +387,8 @@ byte addPayload(byte DataID) {
     case 0x3B:
       //iob_vbat_A o boardVoltage
       outBuff[payloadLen + 0] = 0x3B;
-      //outBuff[payloadLen + 1] = FixInt(int((iob_vbat_A - int(iob_vbat_A)) * 1000.0), 1);
-      //outBuff[payloadLen + 2] = FixInt(int((iob_vbat_A - int(iob_vbat_A)) * 1000.0), 2);
-      outBuff[payloadLen + 1]=0x05; 
-      outBuff[payloadLen + 2]=0x00;
+      outBuff[payloadLen + 1] = FixInt(int((iob_vbat_A - int(iob_vbat_A)) * 1000.0), 1);
+      outBuff[payloadLen + 2] = FixInt(int((iob_vbat_A - int(iob_vbat_A)) * 1000.0), 2);
       
       addedLen = 3;      
       break;

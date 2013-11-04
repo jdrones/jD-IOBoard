@@ -194,7 +194,7 @@ int i2cErrorCount;
 //---------Public variable of Battery-------------
 unsigned char Frsky_Count_Order_Batt;
 long Frsky_Batt_Volt_A; 
-byte Batt_Cell_Detect;
+static byte Batt_Cell_Detect=0;
 
 float Batt_Volte_Backup;
 
@@ -423,13 +423,13 @@ void loop()
     
 
     // Update base lights if any
-    updateBase();
+    //updateBase();
   
     if(enable_mav_request == 1) { //Request rate control. 
      // DPL("IN ENA REQ");
       // During rate requsst, LEFT/RIGHT outputs are HIGH
-      digitalWrite(LEFT, EN);
-      digitalWrite(RIGHT, EN);
+      //digitalWrite(LEFT, EN);
+      //digitalWrite(RIGHT, EN);
 
       for(int n = 0; n < 3; n++) {
         request_mavlink_rates();   //Three times to certify it will be readed
@@ -438,10 +438,10 @@ void loop()
       enable_mav_request = 0;
 
       // 2 second delay, during delay we still update PWM output
-      for(int loopy = 0; loopy <= 2000; loopy++) {
+      /*for(int loopy = 0; loopy <= 2000; loopy++) {
         delay(1);
         updatePWM();
-      }
+      }*/
       waitingMAVBeats = 0;
       lastMAVBeat = millis();    // Preventing error from delay sensing
       //DPL("OUT ENA REQ");
@@ -493,7 +493,7 @@ void OnMavlinkTimer()
      else ClearPattern(); 
     
     // Update base LEDs  
-    updateBase();
+    //updateBase();
 
 /*    DPN("MC:"); 
     DPL(messageCounter);
@@ -540,6 +540,16 @@ void dumpVars() {
  DPN(iob_lat);
  DPN(" Lon");
  DPN(iob_lon);
+// DPN(" Pitch");
+// DPN(iob_pitch);
+// DPN(" Yaw");
+// DPN(iob_yaw);
+// DPN(" Roll");
+// DPN(iob_roll);
+ DPN(" Hdop");
+ DPN(iob_hdop);
+ DPN(" Vdop");
+ DPN(iob_hdop);
  
          /*          DPN("Cell:");
          DPN(Frsky_Batt_Volt_A);
