@@ -244,6 +244,27 @@ byte addPayload(byte DataID) {
          Frsky_Count_Order_Batt=0;
          addedLen=0;
        }
+
+
+//       if(Frsky_Count_Order_Batt < Batt_Cell_Detect)
+//       {
+//         Frsky_Batt_Volt_A=((((iob_vbat_A/Batt_Cell_Detect)*2100)/4.2));
+//         outBuff[payloadLen + 0] = 0x06;
+//         outBuff[payloadLen + 1] = (Frsky_Count_Order_Batt<<4)&0xF0 | ((Frsky_Batt_Volt_A>>8)&0x0F);  //(iob_vbat_A)
+//         outBuff[payloadLen + 2] = (Frsky_Batt_Volt_A)&0xFF;
+//         Frsky_Count_Order_Batt++;
+//         addedLen = 3;
+//       }
+//       else
+//       {
+//         Frsky_Count_Order_Batt=0;
+//         Frsky_Batt_Volt_A=((((iob_vbat_A/Batt_Cell_Detect)*2100)/4.2));
+//         outBuff[payloadLen + 0] = 0x06;
+//         outBuff[payloadLen + 1] = (Frsky_Count_Order_Batt<<4)&0xF0 | ((Frsky_Batt_Volt_A>>8)&0x0F);  //(iob_vbat_A)
+//         outBuff[payloadLen + 2] = (Frsky_Batt_Volt_A)&0xFF;
+//         Frsky_Count_Order_Batt++;
+//         addedLen = 3;
+//       }
        
       /* outBuff[payloadLen + 0] = 0x06;
        outBuff[payloadLen + 1] = 0x06;
