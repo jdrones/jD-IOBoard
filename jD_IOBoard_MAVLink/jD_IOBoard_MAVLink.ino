@@ -196,7 +196,6 @@ unsigned char Frsky_Count_Order_Batt;
 long Frsky_Batt_Volt_A; 
 static byte Batt_Cell_Detect=0;
 float Batt_Volte_Backup;
-//float Batt_Percent_Config;
 byte Batt_SR_Select;
 
 
