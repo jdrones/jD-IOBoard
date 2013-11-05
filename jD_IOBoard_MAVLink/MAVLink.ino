@@ -96,6 +96,8 @@ void read_mavlink(){
               if(isArmedOld == 0) {
                   CheckFlightMode();
                   isArmedOld = 1;
+                  Alti_SR.En_Alt=1;  //Wait!! Arm==1
+                  Batt_SR.Plugin_Frist=0; //Clear for backupdata data
               }    
               isArmed = 1;  
             } else {
@@ -141,10 +143,11 @@ void read_mavlink(){
             cellVvalue();
             
             //---------Backup Battery Frist state--------//
-            if(Batt_SR.Plugin_Frist!=TRUE&&iob_vbat_A>9)
+            if(Batt_SR.Plugin_Frist!=TRUE&&iob_vbat_A>9)  //Eeprom never save data && voltage !=0 && Frist plugin volatge
             {
-              Batt_SR.Plugin_Frist=TRUE;
-              Batt_Volte_Backup=iob_vbat_A;
+              Batt_SR.Buckup_EEP=1;   //Set flag backup data to eeprom
+              Batt_SR.Plugin_Frist=TRUE;  //voltage plugin frist 
+              Batt_Volte_Backup=iob_vbat_A; 
               //----------Set Cell Active----------
               if(iob_vbat_A>18)
               { 
@@ -192,8 +195,6 @@ void read_mavlink(){
 //         dbPRNL("MAV ID GPS");
             iob_fix_type = mavlink_msg_gps_raw_get_fix_type(&msg);
             
-            iob_hdop=mavlink_msg_gps_raw_int_get_eph(&msg);
-            iob_vdop=mavlink_msg_gps_raw_int_get_epv(&msg);
 //            dbPRN("GPS FIX: ");
 //            dbSerial.println(iob_fix_type);
           }
@@ -208,6 +209,10 @@ void read_mavlink(){
         case MAVLINK_MSG_ID_GPS_RAW_INT:
           { 
             iob_lat = mavlink_msg_gps_raw_int_get_lat(&msg) / 10000000.0f;
+            
+            iob_hdop=(mavlink_msg_gps_raw_int_get_eph(&msg)/100);
+            //iob_vdop=mavlink_msg_gps_raw_int_get_epv(&msg);
+            
 // Patch from Simon / DIYD. Converting GPS locations to correct format            
             if (iob_lat < 0) {
               iob_lat_dir = 'S';

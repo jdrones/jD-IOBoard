@@ -76,6 +76,9 @@
 
 #define ISFRSKY 140
 
+#define Batt_SR_ADDR 150  //battery status
+#define Batt_DR_ADDR 151 //battery data
+
 // Internal version, check placeholders
 #define CHK1 1000
 #define CHK2 1006

@@ -195,28 +195,55 @@ int i2cErrorCount;
 unsigned char Frsky_Count_Order_Batt;
 long Frsky_Batt_Volt_A; 
 static byte Batt_Cell_Detect=0;
-
 float Batt_Volte_Backup;
+//float Batt_Percent_Config;
+byte Batt_SR_Select;
+
+
+//--------Define Variable for caculator Percent  LED_Alart 
+#define Batt_Percent_Alart  15
+
+static float Batt_Volt_Cell6_Config =18;
+static float Batt_Volt_Cell5_Config =15;
+static float Batt_Volt_Cell4_Config =12;
+static float Batt_Volt_Cell3_Config =9;
+
+
+#define Batt_Cell6_Volt_Alart     (18+((Batt_Volt_Cell6_Config/100)*Batt_Percent_Alart))
+#define Batt_Cell5_Volt_Alart     (15+((Batt_Volt_Cell5_Config/100)*Batt_Percent_Alart))
+#define Batt_Cell4_Volt_Alart     (12+((Batt_Volt_Cell4_Config/100)*Batt_Percent_Alart))
+#define Batt_Cell3_Volt_Alart     (9+((Batt_Volt_Cell3_Config/100)*Batt_Percent_Alart))
+
+
+
 
 //---------Public Data Struct of Battery ---------
 struct{  //Status register battery
   boolean Plugin_Frist : 1;  
-  boolean Batt_SR1 : 1;
-  boolean Batt_SR2 : 1;
-  boolean Batt_SR3 : 1;
+  boolean Buckup_EEP : 1;  //Enable save data to eeprom 
+  boolean Batt_SR2 : 1;   
+  boolean Batt_SR3 : 1;    
   boolean Batt_SR4 : 1;
   boolean Batt_SR5 : 1;
   boolean Batt_SR6 : 1;     
   boolean Batt_SR7 : 1;     
 }Batt_SR;  //Status Flag of Battery
-   
-
-
 
 
 //===================|Battery System|======================//
 
 
+
+
+//==========================================================//
+//            Globle Variable Altitude  System              //
+//==========================================================//
+
+struct Altitude_Status{
+  boolean En_Alt:1;
+}Alti_SR;
+
+//===================|Altitude System|======================//
 
 
 byte ledState;
@@ -390,6 +417,23 @@ debug = 4;
   //--------Initail Para Battery Systems----------//
   Batt_SR.Plugin_Frist=FALSE;  //start plugin vcc--> board  
   Batt_Cell_Detect=0;
+  Batt_SR.Buckup_EEP=0;
+  
+   Batt_SR_Select=readEEPROM(Batt_SR_ADDR);
+   if(bitRead(Batt_SR_Select,7)) //Flag Plugin Frist is set
+   {
+     Batt_SR.Plugin_Frist=TRUE;
+     Batt_Cell_Detect=readEEPROM(Batt_DR_ADDR);
+   }
+   else
+   {
+     Batt_SR.Plugin_Frist=0;
+   }
+    
+  
+  //-------Initial Para Operat Altiude-----------//
+  Alti_SR.En_Alt=0;  //Wait!! Arm==1
+  iob_alt = 0;       // altitude
     
 } // END of setup();
 
@@ -423,7 +467,9 @@ void loop()
     
 
     // Update base lights if any
-    //updateBase();
+    updateBase();
+    //update Modes status
+    digitalWrite(ledPin,le_patt[baseState][patt_pos]);
   
     if(enable_mav_request == 1) { //Request rate control. 
      // DPL("IN ENA REQ");
@@ -461,6 +507,27 @@ void loop()
 
     updatePWM(); 
     update_FrSky();
+    
+    //-----Operat Altiude uadate iob_alt
+   if( Alti_SR.En_Alt!=1)   //Wait!! Arm==1
+   {
+     iob_alt = 0;      // altitude
+   }
+   
+   //-------Operat Battery Display Alarm LED------//
+    Batt_Alarm_LED();
+
+   //-------Oparat Save Data Batt backup--------//
+   if(Batt_SR.Buckup_EEP==1)
+   {
+     Batt_SR.Buckup_EEP=0;  //Disable Backup data
+     Batt_SR_Select=Batt_SR.Plugin_Frist<<7;
+     writeEEPROM(Batt_SR_ADDR,Batt_SR_Select);
+     writeEEPROM(Batt_DR_ADDR,Batt_Cell_Detect);
+   }
+   
+   
+    
   } //else AllOff();
 
 }
@@ -484,7 +551,7 @@ void OnMavlinkTimer()
       // CPU board voltage alarm  
       if(voltAlarm) {
         LeRiPatt = LOWVOLTAGE;  
-        DPL("ALARM, low voltage");
+//        DPL("ALARM, low voltage");
       }     
     }
         
@@ -548,8 +615,8 @@ void dumpVars() {
 // DPN(iob_roll);
  DPN(" Hdop");
  DPN(iob_hdop);
- DPN(" Vdop");
- DPN(iob_hdop);
+
+
  
          /*          DPN("Cell:");
          DPN(Frsky_Batt_Volt_A);
