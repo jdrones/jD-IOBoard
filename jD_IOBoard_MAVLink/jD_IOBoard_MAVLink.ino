@@ -151,6 +151,7 @@
 //#define DUMPEEPROM            // Should not be activated in repository code, only for debug
 //#define DUMPEEPROMTELEMETRY   // Should not be activated in repository code, only for debug
 #define NEWPAT
+#define HWRESET
 
 /* *************************************************/
 /* ***************** DEFINITIONS *******************/
@@ -193,6 +194,65 @@ byte voltAlarm;  // Alarm holder for internal voltage alarms, trigger 4 volts
 float boardVoltage;
 int i2cErrorCount;
 
+
+//==========================================================//
+//            Globle Variable Battery  System               //
+//==========================================================//
+
+//---------Public variable of Battery-------------
+unsigned char Frsky_Count_Order_Batt;
+long Frsky_Batt_Volt_A; 
+static byte Batt_Cell_Detect=0;
+float Batt_Volte_Backup;
+byte Batt_SR_Select;
+
+
+//--------Define Variable for caculator Percent  LED_Alart 
+#define Batt_Percent_Alart  15
+
+static float Batt_Volt_Cell6_Config =18;
+static float Batt_Volt_Cell5_Config =15;
+static float Batt_Volt_Cell4_Config =12;
+static float Batt_Volt_Cell3_Config =9;
+
+
+#define Batt_Cell6_Volt_Alart     (18+((Batt_Volt_Cell6_Config/100)*Batt_Percent_Alart))
+#define Batt_Cell5_Volt_Alart     (15+((Batt_Volt_Cell5_Config/100)*Batt_Percent_Alart))
+#define Batt_Cell4_Volt_Alart     (12+((Batt_Volt_Cell4_Config/100)*Batt_Percent_Alart))
+#define Batt_Cell3_Volt_Alart     (9+((Batt_Volt_Cell3_Config/100)*Batt_Percent_Alart))
+
+
+
+
+//---------Public Data Struct of Battery ---------
+struct{  //Status register battery
+  boolean Plugin_Frist : 1;  
+  boolean Buckup_EEP : 1;  //Enable save data to eeprom 
+  boolean Batt_SR2 : 1;   
+  boolean Batt_SR3 : 1;    
+  boolean Batt_SR4 : 1;
+  boolean Batt_SR5 : 1;
+  boolean Batt_SR6 : 1;     
+  boolean Batt_SR7 : 1;     
+}Batt_SR;  //Status Flag of Battery
+
+
+//===================|Battery System|======================//
+
+
+
+
+//==========================================================//
+//            Globle Variable Altitude  System              //
+//==========================================================//
+
+struct Altitude_Status{
+  boolean En_Alt:1;
+}Alti_SR;
+
+//===================|Altitude System|======================//
+
+
 byte ledState;
 byte baseState;  // Bit mask for different basic output LEDs like so called Left/Right 
 
@@ -201,6 +261,7 @@ byte deb2 = 1;
 
 byte ANA;
 byte bVER = 10;
+
 
 // Objects and Serial definitions
 FastSerialPort0(Serial);
@@ -233,10 +294,12 @@ void setup()
   
   // Before all, set debug level if we have any. Comment out if not
 debug = 4;  
-  
+
+
   
   // Initialize Serial port, speed
   Serial.begin(TELEMETRY_SPEED);
+
 
 #ifdef SERDB
   // Our software serial is connected on pins D6 and D5
@@ -356,6 +419,28 @@ debug = 4;
   // additional features like light conditions that changes it.
   isActive = EN;  
   DPL("End of setup");
+  
+  
+  //--------Initail Para Battery Systems----------//
+  Batt_SR.Plugin_Frist=FALSE;  //start plugin vcc--> board  
+  Batt_Cell_Detect=0;
+  Batt_SR.Buckup_EEP=0;
+  
+   Batt_SR_Select=readEEPROM(Batt_SR_ADDR);
+   if(bitRead(Batt_SR_Select,7)) //Flag Plugin Frist is set
+   {
+     Batt_SR.Plugin_Frist=TRUE;
+     Batt_Cell_Detect=readEEPROM(Batt_DR_ADDR);
+   }
+   else
+   {
+     Batt_SR.Plugin_Frist=0;
+   }
+    
+  
+  //-------Initial Para Operat Altiude-----------//
+  Alti_SR.En_Alt=0;  //Wait!! Arm==1
+  iob_alt = 0;       // altitude
     
 } // END of setup();
 
@@ -379,7 +464,6 @@ void loop()
     if(p_curMillis - p_preMillis > p_delMillis) {
       // save the last time you blinked the LED 
       p_preMillis = p_curMillis;   
-
       // First we update pattern positions 
       patt_pos++;
       if(patt_pos == 16) {
@@ -387,15 +471,18 @@ void loop()
         if(debug == 4) dumpVars(); 
       }
     }
+    
 
     // Update base lights if any
     updateBase();
+    //update Modes status
+    digitalWrite(ledPin,le_patt[baseState][patt_pos]);
   
     if(enable_mav_request == 1) { //Request rate control. 
      // DPL("IN ENA REQ");
       // During rate requsst, LEFT/RIGHT outputs are HIGH
-      digitalWrite(LEFT, EN);
-      digitalWrite(RIGHT, EN);
+      //digitalWrite(LEFT, EN);
+      //digitalWrite(RIGHT, EN);
 
       for(int n = 0; n < 3; n++) {
         request_mavlink_rates();   //Three times to certify it will be readed
@@ -404,10 +491,10 @@ void loop()
       enable_mav_request = 0;
 
       // 2 second delay, during delay we still update PWM output
-      for(int loopy = 0; loopy <= 2000; loopy++) {
+      /*for(int loopy = 0; loopy <= 2000; loopy++) {
         delay(1);
         updatePWM();
-      }
+      }*/
       waitingMAVBeats = 0;
       lastMAVBeat = millis();    // Preventing error from delay sensing
       //DPL("OUT ENA REQ");
@@ -421,14 +508,34 @@ void loop()
 //      messageCounter = 0;
       LeRiPatt = 6;
     } 
-    
+
     read_mavlink();
     mavlinkTimer.Run();
 
     updatePWM(); 
     update_FrSky();
+    
+    //-----Operat Altiude uadate iob_alt
+   if( Alti_SR.En_Alt!=1)   //Wait!! Arm==1
+   {
+     iob_alt = 0;      // altitude
+   }
+   
+   //-------Operat Battery Display Alarm LED------//
+    Batt_Alarm_LED();
 
-  } else AllOff();
+   //-------Oparat Save Data Batt backup--------//
+   if(Batt_SR.Buckup_EEP==1)
+   {
+     Batt_SR.Buckup_EEP=0;  //Disable Backup data
+     Batt_SR_Select=Batt_SR.Plugin_Frist<<7;
+     writeEEPROM(Batt_SR_ADDR,Batt_SR_Select);
+     writeEEPROM(Batt_DR_ADDR,Batt_Cell_Detect);
+   }
+   
+   
+    
+  } //else AllOff();
 
 }
 
@@ -441,7 +548,7 @@ void OnMavlinkTimer()
   if(millis() < (lastMAVBeat + 3000)) {
     // General condition checks starts from here
     //
-      
+
     // Checks that we handle only if MAVLink is active
     if(mavlink_active) {
       if(iob_fix_type <= 2) LeRiPatt = ALLOK;
@@ -451,16 +558,16 @@ void OnMavlinkTimer()
       // CPU board voltage alarm  
       if(voltAlarm) {
         LeRiPatt = LOWVOLTAGE;  
-        DPL("ALARM, low voltage");
+//        DPL("ALARM, low voltage");
       }     
     }
         
     // If we are armed, run patterns on read output
     if(isArmed) RunPattern();
-     else ClearPattern();
+     else ClearPattern(); 
     
     // Update base LEDs  
-    updateBase();
+    //updateBase();
 
 /*    DPN("MC:"); 
     DPL(messageCounter);
@@ -477,7 +584,6 @@ void OnMavlinkTimer()
 //    DPN("Beats:");
 //   DPL(lastMAVBeat);
     waitingMAVBeats = 1;
-    LeRiPatt = NOMAVLINK;
   }
 }
 
@@ -508,6 +614,29 @@ void dumpVars() {
  DPN(iob_lat);
  DPN(" Lon");
  DPN(iob_lon);
+// DPN(" Pitch");
+// DPN(iob_pitch);
+// DPN(" Yaw");
+// DPN(iob_yaw);
+// DPN(" Roll");
+// DPN(iob_roll);
+ DPN(" Hdop");
+ DPN(iob_hdop);
+
+
+ 
+         /*          DPN("Cell:");
+         DPN(Frsky_Batt_Volt_A);
+         //DPN("Cell Hex: ");
+         //DPN(Frsky_Batt_Volt_A,HEX);
+         DPN("Cell Org: ");
+         DPN(iob_vbat_A,BIN);*/
+
+        
+ 
+        // DPN("Cell:");
+         //DPN(Batt_Volte_Backup);
+ 
  DPL(" "); 
 #endif
 }

@@ -64,6 +64,8 @@ static uint8_t crlf_count = 0;
 static int packet_drops = 0;
 static int parse_error = 0;
 
+
+
 void request_mavlink_rates()
 {
   DPL("Requesting rates");
@@ -132,6 +134,8 @@ void read_mavlink(){
               if(isArmedOld == 0) {
                   CheckFlightMode();
                   isArmedOld = 1;
+                  Alti_SR.En_Alt=1;  //Wait!! Arm==1
+                  Batt_SR.Plugin_Frist=0; //Clear for backupdata data
               }    
               isArmed = 1;  
             } else {
@@ -162,7 +166,7 @@ void read_mavlink(){
               DPN(iob_vbat_A);
               DPL(" ");
             } 
-#endif           
+#endif          
           }
           break;
           
@@ -175,6 +179,33 @@ void read_mavlink(){
             uint16_t tmp = mavlink_msg_sys_status_get_battery_remaining(&msg);
 
             cellVvalue();
+            
+            //---------Backup Battery Frist state--------//
+            if(Batt_SR.Plugin_Frist!=TRUE&&iob_vbat_A>9)  //Eeprom never save data && voltage !=0 && Frist plugin volatge
+            {
+              Batt_SR.Buckup_EEP=1;   //Set flag backup data to eeprom
+              Batt_SR.Plugin_Frist=TRUE;  //voltage plugin frist 
+              Batt_Volte_Backup=iob_vbat_A; 
+              //----------Set Cell Active----------
+              if(iob_vbat_A>18)
+              { 
+                 Batt_Cell_Detect=0x06;
+              }
+              else if(iob_vbat_A>15)
+              {
+                Batt_Cell_Detect=0x05;
+              }
+              else if(iob_vbat_A>12)
+              {
+                Batt_Cell_Detect=0x04;
+              }
+              else if(iob_vbat_A>9)
+              {
+                Batt_Cell_Detect=0x03;
+              }   
+              Frsky_Count_Order_Batt=0;       
+            }
+            //---------Battery Backup------------------//
 
 //            if (tmp < 13) {
 //              iob_battery_remaining_A = 0;
@@ -201,6 +232,7 @@ void read_mavlink(){
           {
 //         dbPRNL("MAV ID GPS");
             iob_fix_type = mavlink_msg_gps_raw_get_fix_type(&msg);
+            
 //            dbPRN("GPS FIX: ");
 //            dbSerial.println(iob_fix_type);
           }
@@ -215,6 +247,10 @@ void read_mavlink(){
         case MAVLINK_MSG_ID_GPS_RAW_INT:
           { 
             iob_lat = mavlink_msg_gps_raw_int_get_lat(&msg) / 10000000.0f;
+            
+            iob_hdop=(mavlink_msg_gps_raw_int_get_eph(&msg)/100);
+            //iob_vdop=mavlink_msg_gps_raw_int_get_epv(&msg);
+            
 // Patch from Simon / DIYD. Converting GPS locations to correct format            
             if (iob_lat < 0) {
               iob_lat_dir = 'S';
@@ -326,4 +362,7 @@ void cellVvalue() {
     cellV[i]=val;
   }
 }
+
+
+
 

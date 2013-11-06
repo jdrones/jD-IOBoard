@@ -99,7 +99,7 @@ static boolean pwm3dir;
 // Counters and millisecond placeholders used around the code
 static long p_hbMillis;                         // HeartBeat counter
 static long c_hbMillis;
-static long d_hbMillis = 1000;
+static long d_hbMillis = 500;
 
 static int8_t    iob_temperature;
 static float    iob_vbat_A = 0;                 // Battery A voltage in milivolt
@@ -117,6 +117,9 @@ static float    iob_lat = 0;                    // latidude
 static float    iob_lon = 0;                    // longitude
 static uint8_t  iob_satellites_visible = 0;     // number of satelites
 static uint8_t  iob_fix_type = 0;               // GPS lock 0-1=no fix, 2=2D, 3=3D
+
+static unsigned int iob_hdop=0;
+
 
 static uint8_t  iob_got_home = 0;               // tels if got home position or not
 
@@ -189,6 +192,8 @@ static byte ri_patt[8][16] = {
   { 1,1,1,1,1,1,1,1 ,1,1,1,1,1,1,1,1  },    // 5
   { 1,1,1,1,1,1,1,1 ,0,0,0,0,0,0,0,0  },    // 6
   { 0,0,0,0,0,0,0,0 ,0,0,0,0,0,0,0,0  }};   // 7
+  
+
 
 
 // FrSky modules addon
@@ -202,6 +207,7 @@ unsigned char outBuffFixed[48];     // Array for payloads
 byte msCounter;
 boolean packetOpen;
 byte payloadLen;
+
 
 byte hour;
 byte minutes;

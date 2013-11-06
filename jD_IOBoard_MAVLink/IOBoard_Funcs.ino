@@ -72,18 +72,22 @@ void AllOff() {
 #ifdef HEARTBEAT
 void HeartBeat() {
   c_hbMillis = millis();
-  if(c_hbMillis - p_hbMillis > d_hbMillis) {
+  if(c_hbMillis - p_hbMillis > d_hbMillis) 
+  {
     // save the last time you blinked the LED 
     p_hbMillis = c_hbMillis;   
     // if the LED is off turn it on and vice-versa:
-      if (ledState == LOW)
-        ledState = HIGH;
-      else
-        ledState = LOW;
-    // set the LED with the ledState of the variable:
-    digitalWrite(ledPin, ledState); 
-//    messageCounter++;   
+//      if (ledState == LOW)
+//        ledState = HIGH;
+//      else
+//        ledState = LOW;
+//    // set the LED with the ledState of the variable:
+//    digitalWrite(ledPin, ledState); 
+    ////messageCounter++;   
+   
+   
   }
+  
 }
 #endif 
 
@@ -94,28 +98,28 @@ void CheckFlightMode() {
   
   
   if(apm_mav_type == 2) { // ArduCopter MultiRotor or ArduCopter Heli
-    if(iob_mode == 0) flMode = STAB;   // Stabilize
-    if(iob_mode == 1) flMode = ACRO;   // Acrobatic
-    if(iob_mode == 2) flMode = ALTH;   // Alt Hold
-    if(iob_mode == 3) flMode = AUTO;   // Auto
-    if(iob_mode == 4) flMode = GUID;   // Guided
-    if(iob_mode == 5) flMode = LOIT;   // Loiter
-    if(iob_mode == 6) flMode = RETL;   // Return to Launch
-    if(iob_mode == 7) flMode = CIRC;   // Circle
-    if(iob_mode == 8) flMode = POSI;   // Position
-    if(iob_mode == 9) flMode = LAND;   // Land
-    if(iob_mode == 10) flMode = OFLO;  // OF_Loiter
+    if(iob_mode == 0) {flMode = STAB;baseState=1;}   // Stabilize
+    if(iob_mode == 1) {flMode = ACRO;baseState=2;}   // Acrobatic
+    if(iob_mode == 2) {flMode = ALTH;baseState=3;}   // Alt Hold
+    if(iob_mode == 3) {flMode = AUTO;baseState=4;}   // Auto
+    if(iob_mode == 4) {flMode = GUID;baseState=5;}   // Guided
+    if(iob_mode == 5) {flMode = LOIT;baseState=6;}   // Loiter
+    if(iob_mode == 6) {flMode = RETL;baseState=1;}   // Return to Launch
+    if(iob_mode == 7) {flMode = CIRC;baseState=2;}   // Circle
+    if(iob_mode == 8) {flMode = POSI;baseState=3;}   // Position
+    if(iob_mode == 9) {flMode = LAND;baseState=4;}  // Land
+    if(iob_mode == 10) {flMode = OFLO;baseState=5;}  // OF_Loiter
   }
   else if(apm_mav_type == 1) { // ArduPlane
-    if(iob_mode == 2 ) flMode = STAB;  // Stabilize
-    if(iob_mode == 0) flMode = MANU;   // Manual
-    if(iob_mode == 12) flMode = LOIT;  // Loiter
-    if(iob_mode == 11 ) flMode = RETL; // Return to Launch
-    if(iob_mode == 5 ) flMode = FBWA;  // FLY_BY_WIRE_A
-    if(iob_mode == 6 ) flMode = FBWB;  // FLY_BY_WIRE_B
-    if(iob_mode == 15) flMode = GUID;  // GUIDED
-    if(iob_mode == 10 ) flMode = AUTO; // AUTO
-    if(iob_mode == 1) flMode = CIRC;   // CIRCLE
+    if(iob_mode == 2 ) {flMode = STAB;baseState=1;}  // Stabilize
+    if(iob_mode == 0) {flMode = MANU;baseState=2;}   // Manual
+    if(iob_mode == 12) {flMode = LOIT;baseState=3;}  // Loiter
+    if(iob_mode == 11 ) {flMode = RETL;baseState=4;} // Return to Launch
+    if(iob_mode == 5 ) {flMode = FBWA;baseState=5;}  // FLY_BY_WIRE_A
+    if(iob_mode == 6 ) {flMode = FBWB;baseState=6;}  // FLY_BY_WIRE_B
+    if(iob_mode == 15) {flMode = GUID;baseState=1;}  // GUIDED
+    if(iob_mode == 10 ){flMode = AUTO;baseState=2;} // AUTO
+    if(iob_mode == 1) {flMode = CIRC;baseState=3;}   // CIRCLE
   }
   
 #ifndef NEWPAT  
@@ -204,10 +208,29 @@ void updatePWM() {
       prePwm = curPwm;
     if (pwm1dir) {
       pwm1++;
-    } else pwm1--;
+    } 
+    else 
+    {
+      pwm1--;
+    }
     if(pwm1 >= 255 && pwm1dir == 1) pwm1dir = 0;
     if(pwm1 <= 20 && pwm1dir == 0) pwm1dir = 1;
     analogWrite(FRONT, pwm1);
+    
+//    if(iob_pitch>0)
+//    {
+//      analogWrite(RIGHT,(iob_roll*2));
+//    }
+//    else if(iob_pitch<0)
+//    {
+//      analogWrite(LEFT,abs(iob_roll)*2);
+//    }
+//    else
+//    {
+//      analogWrite(RIGHT,0);
+//      analogWrite(LEFT,0);
+//    }
+    
     }
 }
 
@@ -247,5 +270,55 @@ boolean getLBit(byte Reg, byte whichBit) {
      return State;
      break;
   }
+}
+
+
+void Batt_Alarm_LED(void)
+{
+     //-------Operat Battery Display Alarm LED------//
+   switch(Batt_Cell_Detect)
+   {
+     case 0x06:{
+                  if(iob_vbat_A<Batt_Cell6_Volt_Alart)  //15% of battery 6cell  low->18  
+                  {
+                    LeRiPatt=3;
+                  }
+                  else
+                  {
+                    LeRiPatt=0;
+                  }
+               };break;
+     case 0x05:{
+                  if(iob_vbat_A<Batt_Cell5_Volt_Alart)   //15% of battery low  5cell  low->15
+                  {
+                     LeRiPatt=3;
+                  }
+                  else
+                  {
+                     LeRiPatt=0;
+                  }
+               };break;
+     case 0x04:{
+                  if(iob_vbat_A<Batt_Cell4_Volt_Alart)  //15% of battery low  4cell  low->12
+                  {
+                     LeRiPatt=3;
+                  }
+                  else 
+                  {
+                     LeRiPatt=0;
+                  }
+               };break;
+     case 0x03:{
+                  if(iob_vbat_A<Batt_Cell3_Volt_Alart)  //15% of battery low  3cell  low->9
+                  {
+                     LeRiPatt=3;
+                  }
+                  else
+                  {
+                     LeRiPatt=0;
+                  }
+               };break;
+     //default: ;break;
+   }
 }
 

@@ -59,10 +59,9 @@ void update_FrSky() {
     payloadLen += addPayload(0x3B); // Voltage , after "."
 
     payloadLen += addPayload(0x03); // rpm
-    
+     
     packetOpen = FALSE;
     payloadLen = sendPayload(payloadLen);
-
 
 
     // 1000ms (1s) payload, construct Frame 2 on every 5th loop
@@ -70,7 +69,6 @@ void update_FrSky() {
       second++;
       updateTime();
       packetOpen = TRUE;
-
       payloadLen += addPayload(0x14);   // Course, degree
       payloadLen += addPayload(0x1c);   // Course, after "."
     
@@ -91,10 +89,11 @@ void update_FrSky() {
       payloadLen += addPayload(0x04);   // Fuel level % 0,25,50,75,100
       
       payloadLen += addPayload(0x18);   // secs
-
+       
 
       packetOpen = FALSE;
       payloadLen = sendPayload(payloadLen);
+
       
     }  
 
@@ -152,13 +151,22 @@ byte addPayload(byte DataID) {
     // Works as ARMED/DISARMED indicator as if DISARMED RPM value is 0
     case 0x03:  
       outBuff[payloadLen + 0] = 0x03;
+      /*
       if(isArmed) {
         outBuff[payloadLen + 1] = map(iob_throttle, 0, 100, 34, 66);
         outBuff[payloadLen + 2] = 0x00;
       } else {
         outBuff[payloadLen + 1] = 0x00;
         outBuff[payloadLen + 2] = 0x00;
-      }  
+      }  */
+
+      if(isArmed) {
+        outBuff[payloadLen + 1] = 0x66;
+        outBuff[payloadLen + 2] = 0x00;
+      } else {
+        outBuff[payloadLen + 1] = 0x34;
+        outBuff[payloadLen + 2] = 0x00;
+      }
       addedLen = 3;      
       break;
 
@@ -173,7 +181,7 @@ byte addPayload(byte DataID) {
     // We are using Temperature 2 to show Visible GPS satellites and also FIX type
     // Visible satellites is multiplied with 10 and fix type is added on final number
     // For example if we have 7 satellites and we have solid 3D fix outcome will be
-    // (7 * 10) + 3 = 73   (7 satelliteds, 3 = 3D Fix)
+    // (7 * 10) + 3 = 73   (7 satellites, 3 = 3D Fix)
     case 0x05:  
       outBuff[payloadLen + 0] = 0x05;
       outBuff[payloadLen + 1] = 10 * iob_satellites_visible + iob_fix_type;
@@ -199,19 +207,70 @@ byte addPayload(byte DataID) {
 */
     // Little Endian exception
     case 0x06:  // Voltage, first 4 bits are cell number, rest 12 are voltage in 1/500v steps, scale 0-4.2v
-      if (cell_count < cell_numb) {
+ /*     if (cell_count < cell_numb) {
         int tmp1 = FixInt(cellV[cell_count], 2);
-        int tmp2 = FixInt(cellV[cell_count], 1);
-
+  
         outBuff[payloadLen + 0] = 0x06;
-        outBuff[payloadLen + 1] = tmp1 + (cell_count * 16);
-        outBuff[payloadLen + 2] = tmp2;
+//        outBuff[payloadLen + 1] = tmp1 + (cell_count * 16);
+//        outBuff[payloadLen + 2] = tmp2;
+
+        outBuff[payloadLen + 1] = 158;
+        outBuff[payloadLen + 2] = 55;
         addedLen = 3;
         
         cell_count++;
       } else {
         cell_count = 0; 
-      }
+      }*/
+      
+      //==================Chagne Data Batt volt for Sending===========//
+       if(Frsky_Count_Order_Batt < Batt_Cell_Detect)
+       {
+          Frsky_Batt_Volt_A=((((iob_vbat_A/Batt_Cell_Detect)*2100)/4.2));
+          //DPL("Batt Cell--> ");
+          //DPL(Batt_Cell_Detect);
+          //DPL(Frsky_Count_Order_Batt);
+         outBuff[payloadLen + 0] = 0x06;
+         outBuff[payloadLen + 1] = (Frsky_Count_Order_Batt<<4)&0xF0 | ((Frsky_Batt_Volt_A>>8)&0x0F);  //(iob_vbat_A)
+         outBuff[payloadLen + 2] = (Frsky_Batt_Volt_A)&0xFF;
+         
+         Frsky_Count_Order_Batt++;
+
+         
+         addedLen = 3;
+       }
+       else
+       {
+         Frsky_Count_Order_Batt=0;
+         addedLen=0;
+       }
+
+
+//       if(Frsky_Count_Order_Batt < Batt_Cell_Detect)
+//       {
+//         Frsky_Batt_Volt_A=((((iob_vbat_A/Batt_Cell_Detect)*2100)/4.2));
+//         outBuff[payloadLen + 0] = 0x06;
+//         outBuff[payloadLen + 1] = (Frsky_Count_Order_Batt<<4)&0xF0 | ((Frsky_Batt_Volt_A>>8)&0x0F);  //(iob_vbat_A)
+//         outBuff[payloadLen + 2] = (Frsky_Batt_Volt_A)&0xFF;
+//         Frsky_Count_Order_Batt++;
+//         addedLen = 3;
+//       }
+//       else
+//       {
+//         Frsky_Count_Order_Batt=0;
+//         Frsky_Batt_Volt_A=((((iob_vbat_A/Batt_Cell_Detect)*2100)/4.2));
+//         outBuff[payloadLen + 0] = 0x06;
+//         outBuff[payloadLen + 1] = (Frsky_Count_Order_Batt<<4)&0xF0 | ((Frsky_Batt_Volt_A>>8)&0x0F);  //(iob_vbat_A)
+//         outBuff[payloadLen + 2] = (Frsky_Batt_Volt_A)&0xFF;
+//         Frsky_Count_Order_Batt++;
+//         addedLen = 3;
+//       }
+       
+      /* outBuff[payloadLen + 0] = 0x06;
+       outBuff[payloadLen + 1] = 0x06;
+       outBuff[payloadLen + 2] = 0xC3;
+       addedLen = 3;*/
+      //==============================================================//
       break;
       
     case 0x10:  // Altitude, before "." works on FLD-02, Taranis no
@@ -351,6 +410,7 @@ byte addPayload(byte DataID) {
       outBuff[payloadLen + 0] = 0x3B;
       outBuff[payloadLen + 1] = FixInt(int((iob_vbat_A - int(iob_vbat_A)) * 1000.0), 1);
       outBuff[payloadLen + 2] = FixInt(int((iob_vbat_A - int(iob_vbat_A)) * 1000.0), 2);
+      
       addedLen = 3;      
       break;
 
@@ -379,7 +439,7 @@ byte addEnd() {
 byte sendPayload(byte len) {
   
   frSerial.write(0x5E);
-  for(byte pos = 0; pos <= len - 1; pos = pos + 3) {
+  for(byte pos = 0; pos <= len-1 ; pos = pos + 3) {
     frSerial.write(byte(outBuff[pos + 0]));
 
     switch  (outBuff[pos + 1]) {
