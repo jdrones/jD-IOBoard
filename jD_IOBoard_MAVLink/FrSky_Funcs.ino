@@ -187,9 +187,35 @@ byte addPayload(byte DataID) {
 
     case 0x04:  // Fuel Level
       outBuff[payloadLen + 0] = 0x04;
-      outBuff[payloadLen + 1] = FixInt(iob_battery_remaining_A, 1);
-      outBuff[payloadLen + 2] = FixInt(iob_battery_remaining_A, 2);
-      addedLen = 3;      
+      //outBuff[payloadLen + 1] = FixInt(iob_battery_remaining_A, 1);
+      //outBuff[payloadLen + 2] = FixInt(iob_battery_remaining_A, 2);
+      //addedLen = 2;
+      iob_Batt_Percent_Remain=(((iob_vbat_A)/(Batt_Cell_Detect*4.2))*100);
+     
+      if(iob_Batt_Percent_Remain>75)
+      {
+        iob_Batt_Percent_Remain=100;
+      }
+      else if(iob_Batt_Percent_Remain>50)
+      {
+        iob_Batt_Percent_Remain=75;
+      }
+      else if(iob_Batt_Percent_Remain>25)
+      {
+        iob_Batt_Percent_Remain=50;
+      }
+      else if(iob_Batt_Percent_Remain<=25&&iob_Batt_Percent_Remain>15)
+      {
+        iob_Batt_Percent_Remain=25;
+      }
+      else if(iob_Batt_Percent_Remain<15)
+      {
+        iob_Batt_Percent_Remain=0;
+      }
+      
+      outBuff[payloadLen + 1] =iob_Batt_Percent_Remain;  
+      outBuff[payloadLen + 2] = 0;
+      addedLen = 3;    
       break;
 
     // Temperature 2

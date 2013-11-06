@@ -236,7 +236,7 @@ static float Batt_Volt_Cell3_Config = 9;
 // #define Batt_Cell4_Volt_Alert     (Batt_Volt_Cell4_Config+((Batt_Volt_Cell4_Config/100)*Batt_Percent_Alert))
 // #define Batt_Cell3_Volt_Alert     (Batt_Volt_Cell3_Config+((Batt_Volt_Cell3_Config/100)*Batt_Percent_Alert))
 
-
+static unsigned char iob_Batt_Percent_Remain;
 
 
 //---------Public Data Struct of Battery ---------
@@ -635,8 +635,10 @@ void dumpVars() {
 // DPN(iob_yaw);
 // DPN(" Roll");
 // DPN(iob_roll);
- DPN(" Hdop");
- DPN(iob_hdop);
+// DPN(" Hdop");
+// DPN(iob_hdop);
+//DPN("Batt remain :");
+//DPN(volt_batt_test);
 
 
  

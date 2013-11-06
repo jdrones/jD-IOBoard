@@ -105,7 +105,7 @@ static float    iob_lon = 0;                    // longitude
 static uint8_t  iob_satellites_visible = 0;     // number of satelites
 static uint8_t  iob_fix_type = 0;               // GPS lock 0-1=no fix, 2=2D, 3=3D
 
-static unsigned int iob_hdop=0;
+static float iob_hdop=0;
 
 
 static uint8_t  iob_got_home = 0;               // tels if got home position or not

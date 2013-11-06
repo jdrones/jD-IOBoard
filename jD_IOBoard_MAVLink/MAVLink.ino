@@ -234,7 +234,8 @@ void read_mavlink(){
           { 
             iob_lat = mavlink_msg_gps_raw_int_get_lat(&msg) / 10000000.0f;
             
-            iob_hdop=(mavlink_msg_gps_raw_int_get_eph(&msg)/100);
+            iob_hdop=mavlink_msg_gps_raw_int_get_eph(&msg);
+            iob_hdop=(iob_hdop/100);
             //iob_vdop=mavlink_msg_gps_raw_int_get_epv(&msg);
             
 // Patch from Simon / DIYD. Converting GPS locations to correct format            
