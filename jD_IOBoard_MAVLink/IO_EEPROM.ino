@@ -1,26 +1,12 @@
 /*
 ///////////////////////////////////////////////////////////////////////
 //
-// Name         : jD-IOBoard_MAVlink Driver
-// Version      : v0.4a-FrSky, 26-07-2013
-// Author       : Jani Hirvinen, jani@j....com
-// Co-Author(s) : 
-//      Sandro Beningo     (MAVLink routines)
-//      Mike Smith         (BetterStream and FastSerial libraries)
-//
+// Please read licensing, redistribution, modifying, authors and 
+// version numbering from main sketch file. This file contains only
+// a minimal header.
 //
 // Copyright (c) 2013, Jani Hirvinen, jDrones & Co.
 // All rights reserved.
-//
-// - Redistribution and use in source and binary forms, with or without 
-//   modification, are permitted provided that the following conditions are met:
-//
-// - Redistributions of source code must retain the above copyright notice, this 
-//  list of conditions and the following disclaimer.
-//
-// - Redistributions in binary form must reproduce the above copyright notice, 
-//  this list of conditions and the following disclaimer in the documentation 
-//  and/or other materials provided with the distribution.
 //
 //  THIS SOFTWARE IS PROVIDED BY THE COPYRIGHT HOLDERS AND CONTRIBUTORS "AS IS" 
 //  AND ANY EXPRESS OR IMPLIED WARRANTIES, INCLUDING, BUT NOT LIMITED TO, THE IMPLIED 
@@ -34,11 +20,8 @@
 //  POSSIBILITY OF SUCH DAMAGE.
 //
 /////////////////////////////////////////////////////////////////////////////
-*/
-
-
-/* 
-   EEPROM Functions for jD-IOBoard.
+//
+//   EEPROM Functions for jD-IOBoard.
 */
 
 // EEPROM reader/writers
@@ -150,9 +133,9 @@ void writeFactorySettings() {
  writeEEPROM(LEFT_IO_ADDR, 8);  
  writeEEPROM(RIGHT_IO_ADDR, 4);
  writeEEPROM(FRONT_IO_ADDR, 9);
- writeEEPROM(REAR_IO_ADDR, 7); //PinOld 10
- writeEEPROM(FLASH_IO_ADDR, 0);      // Future extra flasher 
- writeEEPROM(LEDPIN_IO_ADDR, 10);    // HeartBeat LEDPIN, should be 13 
+ writeEEPROM(REAR_IO_ADDR, 7);     // PinOld 10
+ writeEEPROM(FLASH_IO_ADDR, 0);    // Future extra flasher 
+ writeEEPROM(LEDPIN_IO_ADDR, 10);  // HeartBeat LEDPIN, should be 13 
 
 
 

@@ -2,12 +2,15 @@
 ///////////////////////////////////////////////////////////////////////
 //
 // Name         : jD-IOBoard_MAVlink Driver
-// Version      : v0.4a-FrSky, 26-07-2013
+// Version      : v0.5-FrSky, 06-11-2013
 // Author       : Jani Hirvinen, jani@j....com
 // Co-Author(s) : 
 //      Sandro Beningo     (MAVLink routines)
 //      Mike Smith         (BetterStream and FastSerial libraries)
 //
+//
+// If you use, modify, redistribute, Remember to share your modifications and 
+// you need to include original authors along with your work !!
 //
 // Copyright (c) 2013, Jani Hirvinen, jDrones & Co.
 // All rights reserved.
@@ -84,9 +87,21 @@
 //       C   G 5 A A A A   S S 5 G
 //       O   N V 0 1 2 3   D C V N
 //       M   D             A L   D
-
 //
-// More information, check http://www.jdrones.com/jDoc
+//
+//  Highpower outputs per IOBoard versions
+//
+//  PIN     IOB V1.0     IOB V1.1 
+//  ------------------------------------
+//   O1       D8           D7
+//   O2       D9, PWM      D8
+//   O3       D10, PWM     D9, PWM
+//   O4       D4           D10, PWM
+//   O5       D3, PWM      D3, PWM
+//   O6       D2           D4
+//
+//
+// More information, check http://www.jdrones.com/
 //
 /* **************************************************************************** */
  
@@ -156,7 +171,7 @@
 /* *************************************************/
 /* ***************** DEFINITIONS *******************/
 
-#define VER "v0.4"
+#define VER "v0.5"
 
 // These are not in real use, just for reference
 //#define O1 8      // High power Output 1

@@ -1,14 +1,16 @@
 /*
-
-  File       : jD-IOBoard Notes
-  Version    : v1.0, 06.06.2012
-  Author     : Jani Hirvinen, <jphelirc@gmail.com>
+// Please read licensing, redistribution, modifying, authors and 
+// version numbering from main sketch file. This file contains only
+// a minimal header.
+//
+// Copyright (c) 2013, Jani Hirvinen, jDrones & Co.
+// All rights reserved.
 
 
   TODO:
-  - EEPROM pattern saving
-  - Settings saving to EEPROM
   - Beeper functions for highpower output
+  - Tidying up code
+  - EEPROM ordering
 
 
 
