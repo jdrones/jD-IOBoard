@@ -266,7 +266,7 @@ void Batt_Alarm_LED(void)
    switch(Batt_Cell_Detect)
    {
      case 0x06:{
-                  if(iob_vbat_A<Batt_Cell6_Volt_Alart)  //15% of battery 6cell  low->18  
+                  if(iob_vbat_A < (Batt_Volt_Cell6_Config + ((Batt_Volt_Cell6_Config/100) * BattAlarmPercentage)) )  // 15% of battery 6cell  low->18  
                   {
                     LeRiPatt=3;
                   }
@@ -276,7 +276,7 @@ void Batt_Alarm_LED(void)
                   }
                };break;
      case 0x05:{
-                  if(iob_vbat_A<Batt_Cell5_Volt_Alart)   //15% of battery low  5cell  low->15
+                  if(iob_vbat_A < (Batt_Volt_Cell5_Config + ((Batt_Volt_Cell5_Config/100) * BattAlarmPercentage)) )   // 15% of battery low  5cell  low->15
                   {
                      LeRiPatt=3;
                   }
@@ -286,7 +286,7 @@ void Batt_Alarm_LED(void)
                   }
                };break;
      case 0x04:{
-                  if(iob_vbat_A<Batt_Cell4_Volt_Alart)  //15% of battery low  4cell  low->12
+                  if(iob_vbat_A < (Batt_Volt_Cell4_Config + ((Batt_Volt_Cell4_Config/100) * BattAlarmPercentage)) )  // 15% of battery low  4cell  low->12
                   {
                      LeRiPatt=3;
                   }
@@ -296,7 +296,7 @@ void Batt_Alarm_LED(void)
                   }
                };break;
      case 0x03:{
-                  if(iob_vbat_A<Batt_Cell3_Volt_Alart)  //15% of battery low  3cell  low->9
+                  if(iob_vbat_A < (Batt_Volt_Cell3_Config + ((Batt_Volt_Cell3_Config/100) * BattAlarmPercentage)) )  // 15% of battery low  3cell  low->9
                   {
                      LeRiPatt=3;
                   }
@@ -305,7 +305,7 @@ void Batt_Alarm_LED(void)
                      LeRiPatt=0;
                   }
                };break;
-     //default: ;break;
+     // default: ;break;
    }
 }
 

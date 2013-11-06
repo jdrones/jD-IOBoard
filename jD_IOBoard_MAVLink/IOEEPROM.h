@@ -102,6 +102,7 @@
 
 #define Batt_SR_ADDR 150  // battery status
 #define Batt_DR_ADDR 151  // battery data
+#define BatteryAlarm_Percentage_ADDR 152   // Address to hold alarm percentage value
 
 // Internal version, check placeholders
 #define CHK1 1000

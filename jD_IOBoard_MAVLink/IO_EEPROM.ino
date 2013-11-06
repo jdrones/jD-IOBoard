@@ -128,7 +128,6 @@ void writeFactorySettings() {
 
 
 
-
  // Default locations of different output LEDs, DEC
  writeEEPROM(LEFT_IO_ADDR, 8);  
  writeEEPROM(RIGHT_IO_ADDR, 4);
@@ -140,6 +139,8 @@ void writeFactorySettings() {
 
 
  writeEEPROM(ISFRSKY, 1);           // Activate FrSky protocol output from D5, D6
+ 
+ writeEEPROM(BatteryAlarm_Percentage_ADDR, 15);  // Percentage to trigger battery alarm, default minvoltage + 15% 
 
  // Write details for versioncheck to EEPROM
  writeEEPROM(CHK1, 20);

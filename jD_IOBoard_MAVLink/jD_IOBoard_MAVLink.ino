@@ -162,11 +162,11 @@
 #include "IOBoard.h"
 #include "IOEEPROM.h"
 
-#define CHKVER 40
+#define CHKVER 41
 //#define DUMPEEPROM            // Should not be activated in repository code, only for debug
 //#define DUMPEEPROMTELEMETRY   // Should not be activated in repository code, only for debug
 #define NEWPAT
-#define HWRESET
+//#define HWRESET
 
 /* *************************************************/
 /* ***************** DEFINITIONS *******************/
@@ -211,7 +211,7 @@ int i2cErrorCount;
 
 
 //==========================================================//
-//            Globle Variable Battery  System               //
+//            Global Variable Battery  System               //
 //==========================================================//
 
 //---------Public variable of Battery-------------
@@ -223,18 +223,18 @@ byte Batt_SR_Select;
 
 
 //--------Define Variable for caculator Percent  LED_Alart 
-#define Batt_Percent_Alart  15
+//#define Batt_Percent_Alert  15
 
-static float Batt_Volt_Cell6_Config =18;
-static float Batt_Volt_Cell5_Config =15;
-static float Batt_Volt_Cell4_Config =12;
-static float Batt_Volt_Cell3_Config =9;
+static float Batt_Volt_Cell6_Config = 18;
+static float Batt_Volt_Cell5_Config = 15;
+static float Batt_Volt_Cell4_Config = 12;
+static float Batt_Volt_Cell3_Config = 9;
 
-
-#define Batt_Cell6_Volt_Alart     (18+((Batt_Volt_Cell6_Config/100)*Batt_Percent_Alart))
-#define Batt_Cell5_Volt_Alart     (15+((Batt_Volt_Cell5_Config/100)*Batt_Percent_Alart))
-#define Batt_Cell4_Volt_Alart     (12+((Batt_Volt_Cell4_Config/100)*Batt_Percent_Alart))
-#define Batt_Cell3_Volt_Alart     (9+((Batt_Volt_Cell3_Config/100)*Batt_Percent_Alart))
+// Moved to alarm calculations by jp, 061113
+// #define Batt_Cell6_Volt_Alert     (Batt_Volt_Cell6_Config+((Batt_Volt_Cell6_Config/100)*Batt_Percent_Alert))
+// #define Batt_Cell5_Volt_Alert     (Batt_Volt_Cell5_Config+((Batt_Volt_Cell5_Config/100)*Batt_Percent_Alert))
+// #define Batt_Cell4_Volt_Alert     (Batt_Volt_Cell4_Config+((Batt_Volt_Cell4_Config/100)*Batt_Percent_Alert))
+// #define Batt_Cell3_Volt_Alert     (Batt_Volt_Cell3_Config+((Batt_Volt_Cell3_Config/100)*Batt_Percent_Alert))
 
 
 
@@ -242,14 +242,14 @@ static float Batt_Volt_Cell3_Config =9;
 //---------Public Data Struct of Battery ---------
 struct{  //Status register battery
   boolean Plugin_Frist : 1;  
-  boolean Buckup_EEP : 1;  //Enable save data to eeprom 
+  boolean Buckup_EEP : 1;  // Enable save data to eeprom 
   boolean Batt_SR2 : 1;   
   boolean Batt_SR3 : 1;    
   boolean Batt_SR4 : 1;
   boolean Batt_SR5 : 1;
   boolean Batt_SR6 : 1;     
   boolean Batt_SR7 : 1;     
-}Batt_SR;  //Status Flag of Battery
+} Batt_SR;  //Status Flag of Battery
 
 
 //===================|Battery System|======================//
@@ -309,8 +309,6 @@ void setup()
   
   // Before all, set debug level if we have any. Comment out if not
 debug = 4;  
-
-
   
   // Initialize Serial port, speed
   Serial.begin(TELEMETRY_SPEED);
@@ -388,6 +386,8 @@ debug = 4;
   FRONT = readEEPROM(FRONT_IO_ADDR);
   REAR = readEEPROM(REAR_IO_ADDR);
   ledPin = readEEPROM(LEDPIN_IO_ADDR);
+    
+  BattAlarmPercentage = readEEPROM(BatteryAlarm_Percentage_ADDR);  
     
   // setup mavlink port
   mavlink_comm_0_port = &Serial;
