@@ -321,7 +321,23 @@ debug = 4;
   DPL("No input from this serialport.  ");
   if(analogRead(A6) == 1023) DPL("Running IOBoard v1.1");
 #endif
-  if(analogRead(A6) == 1023) bVER=11;
+  if(analogRead(A6) == 1023) {
+    bVER=11;
+    Out[0] = 7;
+    Out[1] = 8;
+    Out[2] = 9;
+    Out[3] = 10;
+    Out[4] = 3;
+    Out[5] = 4;
+  } else {
+    bVER=10;
+    Out[0] = 8;
+    Out[1] = 9;
+    Out[2] = 10;
+    Out[3] = 4;
+    Out[4] = 3;
+    Out[5] = 2;
+  }    
   
 //#ifdef FRSER
   frSerial.begin(9600);
