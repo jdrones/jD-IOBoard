@@ -323,20 +323,22 @@ debug = 4;
 #endif
   if(analogRead(A6) == 1023) {
     bVER=11;
-    Out[0] = 7;
+    Out[0] = 0;
+    Out[1] = 7;
+    Out[2] = 8;
+    Out[3] = 9;
+    Out[4] = 10;
+    Out[5] = 3;
+    Out[6] = 4;
+  } else {
+    bVER=10;
+    Out[0] = 0;
     Out[1] = 8;
     Out[2] = 9;
     Out[3] = 10;
-    Out[4] = 3;
-    Out[5] = 4;
-  } else {
-    bVER=10;
-    Out[0] = 8;
-    Out[1] = 9;
-    Out[2] = 10;
-    Out[3] = 4;
-    Out[4] = 3;
-    Out[5] = 2;
+    Out[4] = 4;
+    Out[5] = 3;
+    Out[6] = 2;
   }    
   
 //#ifdef FRSER
@@ -398,10 +400,10 @@ debug = 4;
 #endif
     
   // Rear most important values from EEPROM to their variables  
-  LEFT = readEEPROM(LEFT_IO_ADDR) - 1;  // -1 to match Out[] location
-  RIGHT = readEEPROM(RIGHT_IO_ADDR) - 1;
-  FRONT = readEEPROM(FRONT_IO_ADDR) - 1;
-  REAR = readEEPROM(REAR_IO_ADDR) - 1;
+  LEFT = readEEPROM(LEFT_IO_ADDR);    // LEFT output location in Out[] array
+  RIGHT = readEEPROM(RIGHT_IO_ADDR);  // RIGHT output location in Out[] array
+  FRONT = readEEPROM(FRONT_IO_ADDR);  // FRONT output location in Out[] array
+  REAR = readEEPROM(REAR_IO_ADDR);    // REAR output location in Out[] array
   ledPin = readEEPROM(LEDPIN_IO_ADDR);
     
   BattAlarmPercentage = readEEPROM(BatteryAlarm_Percentage_ADDR);  

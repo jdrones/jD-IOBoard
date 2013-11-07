@@ -67,7 +67,7 @@
 // Global variables
 static int counter = 0;     // General counter
 
-static int Out[] = {8,9,10,4,3,2};   // Output I/O pin array
+static int Out[] = {0,8,9,10,4,3,2};   // Output I/O pin array
 static int IOState[] = {0,0,0,0,0,0};
 
 static byte patt_pos;
