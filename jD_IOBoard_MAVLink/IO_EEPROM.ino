@@ -129,10 +129,10 @@ void writeFactorySettings() {
 
 
  // Default locations of different output LEDs, DEC
- writeEEPROM(LEFT_IO_ADDR, 8);  
- writeEEPROM(RIGHT_IO_ADDR, 4);
- writeEEPROM(FRONT_IO_ADDR, 9);
- writeEEPROM(REAR_IO_ADDR, 7);     // PinOld 10
+ writeEEPROM(LEFT_IO_ADDR, 1);   // Was direct IOPIN 8, now using order number 
+ writeEEPROM(RIGHT_IO_ADDR, 2);  // Was direct IOPIN 4
+ writeEEPROM(FRONT_IO_ADDR, 3);  // Was direct IOPIN 9
+ writeEEPROM(REAR_IO_ADDR, 4);   // Was direct IOPIN 7  (v1.0) PinOld 10
  writeEEPROM(FLASH_IO_ADDR, 0);    // Future extra flasher 
  writeEEPROM(LEDPIN_IO_ADDR, 10);  // HeartBeat LEDPIN, should be 13 
 
@@ -143,6 +143,6 @@ void writeFactorySettings() {
  writeEEPROM(BatteryAlarm_Percentage_ADDR, 15);  // Percentage to trigger battery alarm, default minvoltage + 15% 
 
  // Write details for versioncheck to EEPROM
- writeEEPROM(CHK1, 20);
+ writeEEPROM(CHK1, 21);
  writeEEPROM(CHK2, 21);
 }

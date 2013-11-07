@@ -162,9 +162,8 @@
 #include "IOBoard.h"
 #include "IOEEPROM.h"
 
-#define CHKVER 41
 //#define DUMPEEPROM            // Should not be activated in repository code, only for debug
-//#define DUMPEEPROMTELEMETRY   // Should not be activated in repository code, only for debug
+#define DUMPEEPROMTELEMETRY   // Should not be activated in repository code, only for debug
 #define NEWPAT
 //#define HWRESET
 
@@ -172,6 +171,7 @@
 /* ***************** DEFINITIONS *******************/
 
 #define VER "v0.5"
+#define CHKVER 42
 
 // These are not in real use, just for reference
 //#define O1 8      // High power Output 1
@@ -388,7 +388,8 @@ debug = 4;
 
 #ifdef DUMPEEPROMTELEMETRY
   // For debug needs, should never be activated on real-life
-  for(int edump = 0; edump <= 140; edump ++) {
+  Serial.println();
+  for(int edump = 0; edump <= 180; edump ++) {
    Serial.print("EEPROM SLOT: ");
    Serial.print(edump);
    Serial.print(" VALUE: ");
@@ -397,10 +398,10 @@ debug = 4;
 #endif
     
   // Rear most important values from EEPROM to their variables  
-  LEFT = readEEPROM(LEFT_IO_ADDR);
-  RIGHT = readEEPROM(RIGHT_IO_ADDR);
-  FRONT = readEEPROM(FRONT_IO_ADDR);
-  REAR = readEEPROM(REAR_IO_ADDR);
+  LEFT = readEEPROM(LEFT_IO_ADDR) - 1;  // -1 to match Out[] location
+  RIGHT = readEEPROM(RIGHT_IO_ADDR) - 1;
+  FRONT = readEEPROM(FRONT_IO_ADDR) - 1;
+  REAR = readEEPROM(REAR_IO_ADDR) - 1;
   ledPin = readEEPROM(LEDPIN_IO_ADDR);
     
   BattAlarmPercentage = readEEPROM(BatteryAlarm_Percentage_ADDR);  

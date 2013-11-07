@@ -139,31 +139,31 @@ void CheckFlightMode() {
 // Update main pattern
 void RunPattern() {
 #ifndef NEWPAT  
-   digitalWrite(REAR, flight_patt[patt][patt_pos]);
+   digitalWrite(Out[REAR], flight_patt[patt][patt_pos]);
 #else
       if(patt_pos >= 0 && patt_pos <= 7) {
         if(getLBit(pattByteA, patt_pos)) 
-          digitalWrite(REAR, EN);
+          digitalWrite(Out[REAR], EN);
         else
-          digitalWrite(REAR, DI);
+          digitalWrite(Out[REAR], DI);
       } else {
         if(getLBit(pattByteB, patt_pos - 8)) 
-          digitalWrite(REAR, EN);
+          digitalWrite(Out[REAR], EN);
         else
-          digitalWrite(REAR, DI);
+          digitalWrite(Out[REAR], DI);
       }
 #endif
 }
 
 // Clear main pattern
 void ClearPattern() {
-   digitalWrite(REAR, 0);
+   digitalWrite(Out[REAR], 0);
 }
 
 // Updating base leds state
 void updateBase() {
-   digitalWrite(LEFT, le_patt[LeRiPatt][patt_pos]);
-   digitalWrite(RIGHT, ri_patt[LeRiPatt][patt_pos]);
+   digitalWrite(Out[LEFT], le_patt[LeRiPatt][patt_pos]);
+   digitalWrite(Out[RIGHT], ri_patt[LeRiPatt][patt_pos]);
 }
 
 
@@ -202,7 +202,7 @@ void updatePWM() {
     }
     if(pwm1 >= 255 && pwm1dir == 1) pwm1dir = 0;
     if(pwm1 <= 20 && pwm1dir == 0) pwm1dir = 1;
-    analogWrite(FRONT, pwm1);
+    analogWrite(Out[FRONT], pwm1);
     
 //    if(iob_pitch>0)
 //    {
