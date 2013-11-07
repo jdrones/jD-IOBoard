@@ -1,0 +1,473 @@
+K 25
+svn:wc:ra_dav:version-url
+V 73
+/svn/!svn/ver/421/trunk/libraries/GCS_MAVLink/include/mavlink/v1.0/common
+END
+testsuite.h
+K 25
+svn:wc:ra_dav:version-url
+V 85
+/svn/!svn/ver/421/trunk/libraries/GCS_MAVLink/include/mavlink/v1.0/common/testsuite.h
+END
+mavlink_msg_local_position_setpoint.h
+K 25
+svn:wc:ra_dav:version-url
+V 111
+/svn/!svn/ver/421/trunk/libraries/GCS_MAVLink/include/mavlink/v1.0/common/mavlink_msg_local_position_setpoint.h
+END
+mavlink_msg_param_request_list.h
+K 25
+svn:wc:ra_dav:version-url
+V 106
+/svn/!svn/ver/421/trunk/libraries/GCS_MAVLink/include/mavlink/v1.0/common/mavlink_msg_param_request_list.h
+END
+mavlink_msg_local_position_ned.h
+K 25
+svn:wc:ra_dav:version-url
+V 106
+/svn/!svn/ver/421/trunk/libraries/GCS_MAVLink/include/mavlink/v1.0/common/mavlink_msg_local_position_ned.h
+END
+mavlink_msg_nav_controller_output.h
+K 25
+svn:wc:ra_dav:version-url
+V 109
+/svn/!svn/ver/421/trunk/libraries/GCS_MAVLink/include/mavlink/v1.0/common/mavlink_msg_nav_controller_output.h
+END
+mavlink_msg_mission_item_reached.h
+K 25
+svn:wc:ra_dav:version-url
+V 108
+/svn/!svn/ver/421/trunk/libraries/GCS_MAVLink/include/mavlink/v1.0/common/mavlink_msg_mission_item_reached.h
+END
+mavlink_msg_hil_state.h
+K 25
+svn:wc:ra_dav:version-url
+V 97
+/svn/!svn/ver/421/trunk/libraries/GCS_MAVLink/include/mavlink/v1.0/common/mavlink_msg_hil_state.h
+END
+mavlink_msg_rc_channels_override.h
+K 25
+svn:wc:ra_dav:version-url
+V 108
+/svn/!svn/ver/421/trunk/libraries/GCS_MAVLink/include/mavlink/v1.0/common/mavlink_msg_rc_channels_override.h
+END
+mavlink_msg_vision_speed_estimate.h
+K 25
+svn:wc:ra_dav:version-url
+V 109
+/svn/!svn/ver/421/trunk/libraries/GCS_MAVLink/include/mavlink/v1.0/common/mavlink_msg_vision_speed_estimate.h
+END
+mavlink_msg_optical_flow.h
+K 25
+svn:wc:ra_dav:version-url
+V 100
+/svn/!svn/ver/421/trunk/libraries/GCS_MAVLink/include/mavlink/v1.0/common/mavlink_msg_optical_flow.h
+END
+mavlink_msg_set_roll_pitch_yaw_speed_thrust.h
+K 25
+svn:wc:ra_dav:version-url
+V 119
+/svn/!svn/ver/421/trunk/libraries/GCS_MAVLink/include/mavlink/v1.0/common/mavlink_msg_set_roll_pitch_yaw_speed_thrust.h
+END
+mavlink_msg_mission_current.h
+K 25
+svn:wc:ra_dav:version-url
+V 103
+/svn/!svn/ver/421/trunk/libraries/GCS_MAVLink/include/mavlink/v1.0/common/mavlink_msg_mission_current.h
+END
+mavlink_msg_vision_position_estimate.h
+K 25
+svn:wc:ra_dav:version-url
+V 112
+/svn/!svn/ver/421/trunk/libraries/GCS_MAVLink/include/mavlink/v1.0/common/mavlink_msg_vision_position_estimate.h
+END
+mavlink_msg_rc_channels_raw.h
+K 25
+svn:wc:ra_dav:version-url
+V 103
+/svn/!svn/ver/421/trunk/libraries/GCS_MAVLink/include/mavlink/v1.0/common/mavlink_msg_rc_channels_raw.h
+END
+mavlink_msg_mission_request.h
+K 25
+svn:wc:ra_dav:version-url
+V 103
+/svn/!svn/ver/421/trunk/libraries/GCS_MAVLink/include/mavlink/v1.0/common/mavlink_msg_mission_request.h
+END
+mavlink_msg_gps_status.h
+K 25
+svn:wc:ra_dav:version-url
+V 98
+/svn/!svn/ver/421/trunk/libraries/GCS_MAVLink/include/mavlink/v1.0/common/mavlink_msg_gps_status.h
+END
+mavlink_msg_global_position_int.h
+K 25
+svn:wc:ra_dav:version-url
+V 107
+/svn/!svn/ver/421/trunk/libraries/GCS_MAVLink/include/mavlink/v1.0/common/mavlink_msg_global_position_int.h
+END
+mavlink_msg_hil_controls.h
+K 25
+svn:wc:ra_dav:version-url
+V 100
+/svn/!svn/ver/421/trunk/libraries/GCS_MAVLink/include/mavlink/v1.0/common/mavlink_msg_hil_controls.h
+END
+mavlink_msg_mission_item.h
+K 25
+svn:wc:ra_dav:version-url
+V 100
+/svn/!svn/ver/421/trunk/libraries/GCS_MAVLink/include/mavlink/v1.0/common/mavlink_msg_mission_item.h
+END
+mavlink_msg_change_operator_control.h
+K 25
+svn:wc:ra_dav:version-url
+V 111
+/svn/!svn/ver/421/trunk/libraries/GCS_MAVLink/include/mavlink/v1.0/common/mavlink_msg_change_operator_control.h
+END
+mavlink_msg_mission_request_partial_list.h
+K 25
+svn:wc:ra_dav:version-url
+V 116
+/svn/!svn/ver/421/trunk/libraries/GCS_MAVLink/include/mavlink/v1.0/common/mavlink_msg_mission_request_partial_list.h
+END
+mavlink_msg_state_correction.h
+K 25
+svn:wc:ra_dav:version-url
+V 104
+/svn/!svn/ver/421/trunk/libraries/GCS_MAVLink/include/mavlink/v1.0/common/mavlink_msg_state_correction.h
+END
+mavlink_msg_auth_key.h
+K 25
+svn:wc:ra_dav:version-url
+V 96
+/svn/!svn/ver/421/trunk/libraries/GCS_MAVLink/include/mavlink/v1.0/common/mavlink_msg_auth_key.h
+END
+mavlink.h
+K 25
+svn:wc:ra_dav:version-url
+V 83
+/svn/!svn/ver/421/trunk/libraries/GCS_MAVLink/include/mavlink/v1.0/common/mavlink.h
+END
+mavlink_msg_manual_control.h
+K 25
+svn:wc:ra_dav:version-url
+V 102
+/svn/!svn/ver/421/trunk/libraries/GCS_MAVLink/include/mavlink/v1.0/common/mavlink_msg_manual_control.h
+END
+mavlink_msg_attitude.h
+K 25
+svn:wc:ra_dav:version-url
+V 96
+/svn/!svn/ver/421/trunk/libraries/GCS_MAVLink/include/mavlink/v1.0/common/mavlink_msg_attitude.h
+END
+mavlink_msg_scaled_pressure.h
+K 25
+svn:wc:ra_dav:version-url
+V 103
+/svn/!svn/ver/421/trunk/libraries/GCS_MAVLink/include/mavlink/v1.0/common/mavlink_msg_scaled_pressure.h
+END
+mavlink_msg_global_position_setpoint_int.h
+K 25
+svn:wc:ra_dav:version-url
+V 116
+/svn/!svn/ver/421/trunk/libraries/GCS_MAVLink/include/mavlink/v1.0/common/mavlink_msg_global_position_setpoint_int.h
+END
+mavlink_msg_mission_request_list.h
+K 25
+svn:wc:ra_dav:version-url
+V 108
+/svn/!svn/ver/421/trunk/libraries/GCS_MAVLink/include/mavlink/v1.0/common/mavlink_msg_mission_request_list.h
+END
+mavlink_msg_statustext.h
+K 25
+svn:wc:ra_dav:version-url
+V 98
+/svn/!svn/ver/421/trunk/libraries/GCS_MAVLink/include/mavlink/v1.0/common/mavlink_msg_statustext.h
+END
+mavlink_msg_mission_count.h
+K 25
+svn:wc:ra_dav:version-url
+V 101
+/svn/!svn/ver/421/trunk/libraries/GCS_MAVLink/include/mavlink/v1.0/common/mavlink_msg_mission_count.h
+END
+mavlink_msg_rc_channels_scaled.h
+K 25
+svn:wc:ra_dav:version-url
+V 106
+/svn/!svn/ver/421/trunk/libraries/GCS_MAVLink/include/mavlink/v1.0/common/mavlink_msg_rc_channels_scaled.h
+END
+mavlink_msg_named_value_int.h
+K 25
+svn:wc:ra_dav:version-url
+V 103
+/svn/!svn/ver/421/trunk/libraries/GCS_MAVLink/include/mavlink/v1.0/common/mavlink_msg_named_value_int.h
+END
+mavlink_msg_param_value.h
+K 25
+svn:wc:ra_dav:version-url
+V 99
+/svn/!svn/ver/421/trunk/libraries/GCS_MAVLink/include/mavlink/v1.0/common/mavlink_msg_param_value.h
+END
+mavlink_msg_command_ack.h
+K 25
+svn:wc:ra_dav:version-url
+V 99
+/svn/!svn/ver/421/trunk/libraries/GCS_MAVLink/include/mavlink/v1.0/common/mavlink_msg_command_ack.h
+END
+mavlink_msg_set_quad_motors_setpoint.h
+K 25
+svn:wc:ra_dav:version-url
+V 112
+/svn/!svn/ver/421/trunk/libraries/GCS_MAVLink/include/mavlink/v1.0/common/mavlink_msg_set_quad_motors_setpoint.h
+END
+mavlink_msg_vfr_hud.h
+K 25
+svn:wc:ra_dav:version-url
+V 95
+/svn/!svn/ver/421/trunk/libraries/GCS_MAVLink/include/mavlink/v1.0/common/mavlink_msg_vfr_hud.h
+END
+mavlink_msg_vicon_position_estimate.h
+K 25
+svn:wc:ra_dav:version-url
+V 111
+/svn/!svn/ver/421/trunk/libraries/GCS_MAVLink/include/mavlink/v1.0/common/mavlink_msg_vicon_position_estimate.h
+END
+mavlink_msg_roll_pitch_yaw_speed_thrust_setpoint.h
+K 25
+svn:wc:ra_dav:version-url
+V 124
+/svn/!svn/ver/421/trunk/libraries/GCS_MAVLink/include/mavlink/v1.0/common/mavlink_msg_roll_pitch_yaw_speed_thrust_setpoint.h
+END
+version.h
+K 25
+svn:wc:ra_dav:version-url
+V 83
+/svn/!svn/ver/421/trunk/libraries/GCS_MAVLink/include/mavlink/v1.0/common/version.h
+END
+mavlink_msg_local_position_ned_system_global_offset.h
+K 25
+svn:wc:ra_dav:version-url
+V 127
+/svn/!svn/ver/421/trunk/libraries/GCS_MAVLink/include/mavlink/v1.0/common/mavlink_msg_local_position_ned_system_global_offset.h
+END
+mavlink_msg_heartbeat.h
+K 25
+svn:wc:ra_dav:version-url
+V 97
+/svn/!svn/ver/421/trunk/libraries/GCS_MAVLink/include/mavlink/v1.0/common/mavlink_msg_heartbeat.h
+END
+mavlink_msg_mission_ack.h
+K 25
+svn:wc:ra_dav:version-url
+V 99
+/svn/!svn/ver/421/trunk/libraries/GCS_MAVLink/include/mavlink/v1.0/common/mavlink_msg_mission_ack.h
+END
+mavlink_msg_safety_set_allowed_area.h
+K 25
+svn:wc:ra_dav:version-url
+V 111
+/svn/!svn/ver/421/trunk/libraries/GCS_MAVLink/include/mavlink/v1.0/common/mavlink_msg_safety_set_allowed_area.h
+END
+mavlink_msg_global_vision_position_estimate.h
+K 25
+svn:wc:ra_dav:version-url
+V 119
+/svn/!svn/ver/421/trunk/libraries/GCS_MAVLink/include/mavlink/v1.0/common/mavlink_msg_global_vision_position_estimate.h
+END
+mavlink_msg_debug_vect.h
+K 25
+svn:wc:ra_dav:version-url
+V 98
+/svn/!svn/ver/421/trunk/libraries/GCS_MAVLink/include/mavlink/v1.0/common/mavlink_msg_debug_vect.h
+END
+mavlink_msg_param_set.h
+K 25
+svn:wc:ra_dav:version-url
+V 97
+/svn/!svn/ver/421/trunk/libraries/GCS_MAVLink/include/mavlink/v1.0/common/mavlink_msg_param_set.h
+END
+mavlink_msg_gps_raw_int.h
+K 25
+svn:wc:ra_dav:version-url
+V 99
+/svn/!svn/ver/421/trunk/libraries/GCS_MAVLink/include/mavlink/v1.0/common/mavlink_msg_gps_raw_int.h
+END
+mavlink_msg_roll_pitch_yaw_thrust_setpoint.h
+K 25
+svn:wc:ra_dav:version-url
+V 118
+/svn/!svn/ver/421/trunk/libraries/GCS_MAVLink/include/mavlink/v1.0/common/mavlink_msg_roll_pitch_yaw_thrust_setpoint.h
+END
+mavlink_msg_mission_clear_all.h
+K 25
+svn:wc:ra_dav:version-url
+V 105
+/svn/!svn/ver/421/trunk/libraries/GCS_MAVLink/include/mavlink/v1.0/common/mavlink_msg_mission_clear_all.h
+END
+mavlink_msg_gps_global_origin.h
+K 25
+svn:wc:ra_dav:version-url
+V 105
+/svn/!svn/ver/421/trunk/libraries/GCS_MAVLink/include/mavlink/v1.0/common/mavlink_msg_gps_global_origin.h
+END
+mavlink_msg_data_stream.h
+K 25
+svn:wc:ra_dav:version-url
+V 99
+/svn/!svn/ver/421/trunk/libraries/GCS_MAVLink/include/mavlink/v1.0/common/mavlink_msg_data_stream.h
+END
+mavlink_msg_debug.h
+K 25
+svn:wc:ra_dav:version-url
+V 93
+/svn/!svn/ver/421/trunk/libraries/GCS_MAVLink/include/mavlink/v1.0/common/mavlink_msg_debug.h
+END
+mavlink_msg_set_quad_swarm_roll_pitch_yaw_thrust.h
+K 25
+svn:wc:ra_dav:version-url
+V 124
+/svn/!svn/ver/421/trunk/libraries/GCS_MAVLink/include/mavlink/v1.0/common/mavlink_msg_set_quad_swarm_roll_pitch_yaw_thrust.h
+END
+mavlink_msg_servo_output_raw.h
+K 25
+svn:wc:ra_dav:version-url
+V 104
+/svn/!svn/ver/421/trunk/libraries/GCS_MAVLink/include/mavlink/v1.0/common/mavlink_msg_servo_output_raw.h
+END
+mavlink_msg_ping.h
+K 25
+svn:wc:ra_dav:version-url
+V 92
+/svn/!svn/ver/421/trunk/libraries/GCS_MAVLink/include/mavlink/v1.0/common/mavlink_msg_ping.h
+END
+mavlink_msg_system_time.h
+K 25
+svn:wc:ra_dav:version-url
+V 99
+/svn/!svn/ver/421/trunk/libraries/GCS_MAVLink/include/mavlink/v1.0/common/mavlink_msg_system_time.h
+END
+mavlink_msg_mission_write_partial_list.h
+K 25
+svn:wc:ra_dav:version-url
+V 114
+/svn/!svn/ver/421/trunk/libraries/GCS_MAVLink/include/mavlink/v1.0/common/mavlink_msg_mission_write_partial_list.h
+END
+mavlink_msg_param_request_read.h
+K 25
+svn:wc:ra_dav:version-url
+V 106
+/svn/!svn/ver/421/trunk/libraries/GCS_MAVLink/include/mavlink/v1.0/common/mavlink_msg_param_request_read.h
+END
+mavlink_msg_raw_imu.h
+K 25
+svn:wc:ra_dav:version-url
+V 95
+/svn/!svn/ver/421/trunk/libraries/GCS_MAVLink/include/mavlink/v1.0/common/mavlink_msg_raw_imu.h
+END
+mavlink_msg_set_roll_pitch_yaw_thrust.h
+K 25
+svn:wc:ra_dav:version-url
+V 113
+/svn/!svn/ver/421/trunk/libraries/GCS_MAVLink/include/mavlink/v1.0/common/mavlink_msg_set_roll_pitch_yaw_thrust.h
+END
+mavlink_msg_named_value_float.h
+K 25
+svn:wc:ra_dav:version-url
+V 105
+/svn/!svn/ver/421/trunk/libraries/GCS_MAVLink/include/mavlink/v1.0/common/mavlink_msg_named_value_float.h
+END
+mavlink_msg_scaled_imu.h
+K 25
+svn:wc:ra_dav:version-url
+V 98
+/svn/!svn/ver/421/trunk/libraries/GCS_MAVLink/include/mavlink/v1.0/common/mavlink_msg_scaled_imu.h
+END
+mavlink_msg_hil_rc_inputs_raw.h
+K 25
+svn:wc:ra_dav:version-url
+V 105
+/svn/!svn/ver/421/trunk/libraries/GCS_MAVLink/include/mavlink/v1.0/common/mavlink_msg_hil_rc_inputs_raw.h
+END
+mavlink_msg_change_operator_control_ack.h
+K 25
+svn:wc:ra_dav:version-url
+V 115
+/svn/!svn/ver/421/trunk/libraries/GCS_MAVLink/include/mavlink/v1.0/common/mavlink_msg_change_operator_control_ack.h
+END
+mavlink_msg_set_local_position_setpoint.h
+K 25
+svn:wc:ra_dav:version-url
+V 115
+/svn/!svn/ver/421/trunk/libraries/GCS_MAVLink/include/mavlink/v1.0/common/mavlink_msg_set_local_position_setpoint.h
+END
+mavlink_msg_raw_pressure.h
+K 25
+svn:wc:ra_dav:version-url
+V 100
+/svn/!svn/ver/421/trunk/libraries/GCS_MAVLink/include/mavlink/v1.0/common/mavlink_msg_raw_pressure.h
+END
+mavlink_msg_sys_status.h
+K 25
+svn:wc:ra_dav:version-url
+V 98
+/svn/!svn/ver/421/trunk/libraries/GCS_MAVLink/include/mavlink/v1.0/common/mavlink_msg_sys_status.h
+END
+mavlink_msg_attitude_quaternion.h
+K 25
+svn:wc:ra_dav:version-url
+V 107
+/svn/!svn/ver/421/trunk/libraries/GCS_MAVLink/include/mavlink/v1.0/common/mavlink_msg_attitude_quaternion.h
+END
+mavlink_msg_memory_vect.h
+K 25
+svn:wc:ra_dav:version-url
+V 99
+/svn/!svn/ver/421/trunk/libraries/GCS_MAVLink/include/mavlink/v1.0/common/mavlink_msg_memory_vect.h
+END
+mavlink_msg_safety_allowed_area.h
+K 25
+svn:wc:ra_dav:version-url
+V 107
+/svn/!svn/ver/421/trunk/libraries/GCS_MAVLink/include/mavlink/v1.0/common/mavlink_msg_safety_allowed_area.h
+END
+mavlink_msg_set_gps_global_origin.h
+K 25
+svn:wc:ra_dav:version-url
+V 109
+/svn/!svn/ver/421/trunk/libraries/GCS_MAVLink/include/mavlink/v1.0/common/mavlink_msg_set_gps_global_origin.h
+END
+mavlink_msg_request_data_stream.h
+K 25
+svn:wc:ra_dav:version-url
+V 107
+/svn/!svn/ver/421/trunk/libraries/GCS_MAVLink/include/mavlink/v1.0/common/mavlink_msg_request_data_stream.h
+END
+mavlink_msg_command_long.h
+K 25
+svn:wc:ra_dav:version-url
+V 100
+/svn/!svn/ver/421/trunk/libraries/GCS_MAVLink/include/mavlink/v1.0/common/mavlink_msg_command_long.h
+END
+mavlink_msg_mission_set_current.h
+K 25
+svn:wc:ra_dav:version-url
+V 107
+/svn/!svn/ver/421/trunk/libraries/GCS_MAVLink/include/mavlink/v1.0/common/mavlink_msg_mission_set_current.h
+END
+mavlink_msg_set_global_position_setpoint_int.h
+K 25
+svn:wc:ra_dav:version-url
+V 120
+/svn/!svn/ver/421/trunk/libraries/GCS_MAVLink/include/mavlink/v1.0/common/mavlink_msg_set_global_position_setpoint_int.h
+END
+mavlink_msg_set_mode.h
+K 25
+svn:wc:ra_dav:version-url
+V 96
+/svn/!svn/ver/421/trunk/libraries/GCS_MAVLink/include/mavlink/v1.0/common/mavlink_msg_set_mode.h
+END
+common.h
+K 25
+svn:wc:ra_dav:version-url
+V 82
+/svn/!svn/ver/421/trunk/libraries/GCS_MAVLink/include/mavlink/v1.0/common/common.h
+END

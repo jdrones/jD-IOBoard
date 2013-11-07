@@ -1,0 +1,125 @@
+K 25
+svn:wc:ra_dav:version-url
+V 80
+/svn/!svn/ver/421/trunk/libraries/GCS_MAVLink/include/mavlink/v0.9/ardupilotmega
+END
+mavlink_msg_sensor_offsets.h
+K 25
+svn:wc:ra_dav:version-url
+V 109
+/svn/!svn/ver/421/trunk/libraries/GCS_MAVLink/include/mavlink/v0.9/ardupilotmega/mavlink_msg_sensor_offsets.h
+END
+testsuite.h
+K 25
+svn:wc:ra_dav:version-url
+V 92
+/svn/!svn/ver/421/trunk/libraries/GCS_MAVLink/include/mavlink/v0.9/ardupilotmega/testsuite.h
+END
+mavlink_msg_fence_fetch_point.h
+K 25
+svn:wc:ra_dav:version-url
+V 112
+/svn/!svn/ver/421/trunk/libraries/GCS_MAVLink/include/mavlink/v0.9/ardupilotmega/mavlink_msg_fence_fetch_point.h
+END
+mavlink_msg_mount_control.h
+K 25
+svn:wc:ra_dav:version-url
+V 108
+/svn/!svn/ver/421/trunk/libraries/GCS_MAVLink/include/mavlink/v0.9/ardupilotmega/mavlink_msg_mount_control.h
+END
+mavlink_msg_mount_configure.h
+K 25
+svn:wc:ra_dav:version-url
+V 110
+/svn/!svn/ver/421/trunk/libraries/GCS_MAVLink/include/mavlink/v0.9/ardupilotmega/mavlink_msg_mount_configure.h
+END
+mavlink_msg_mount_status.h
+K 25
+svn:wc:ra_dav:version-url
+V 107
+/svn/!svn/ver/421/trunk/libraries/GCS_MAVLink/include/mavlink/v0.9/ardupilotmega/mavlink_msg_mount_status.h
+END
+ardupilotmega.h
+K 25
+svn:wc:ra_dav:version-url
+V 96
+/svn/!svn/ver/421/trunk/libraries/GCS_MAVLink/include/mavlink/v0.9/ardupilotmega/ardupilotmega.h
+END
+mavlink_msg_ap_adc.h
+K 25
+svn:wc:ra_dav:version-url
+V 101
+/svn/!svn/ver/421/trunk/libraries/GCS_MAVLink/include/mavlink/v0.9/ardupilotmega/mavlink_msg_ap_adc.h
+END
+mavlink_msg_set_mag_offsets.h
+K 25
+svn:wc:ra_dav:version-url
+V 110
+/svn/!svn/ver/421/trunk/libraries/GCS_MAVLink/include/mavlink/v0.9/ardupilotmega/mavlink_msg_set_mag_offsets.h
+END
+mavlink.h
+K 25
+svn:wc:ra_dav:version-url
+V 90
+/svn/!svn/ver/421/trunk/libraries/GCS_MAVLink/include/mavlink/v0.9/ardupilotmega/mavlink.h
+END
+mavlink_msg_hwstatus.h
+K 25
+svn:wc:ra_dav:version-url
+V 103
+/svn/!svn/ver/421/trunk/libraries/GCS_MAVLink/include/mavlink/v0.9/ardupilotmega/mavlink_msg_hwstatus.h
+END
+mavlink_msg_fence_status.h
+K 25
+svn:wc:ra_dav:version-url
+V 107
+/svn/!svn/ver/421/trunk/libraries/GCS_MAVLink/include/mavlink/v0.9/ardupilotmega/mavlink_msg_fence_status.h
+END
+mavlink_msg_simstate.h
+K 25
+svn:wc:ra_dav:version-url
+V 103
+/svn/!svn/ver/421/trunk/libraries/GCS_MAVLink/include/mavlink/v0.9/ardupilotmega/mavlink_msg_simstate.h
+END
+mavlink_msg_fence_point.h
+K 25
+svn:wc:ra_dav:version-url
+V 106
+/svn/!svn/ver/421/trunk/libraries/GCS_MAVLink/include/mavlink/v0.9/ardupilotmega/mavlink_msg_fence_point.h
+END
+mavlink_msg_meminfo.h
+K 25
+svn:wc:ra_dav:version-url
+V 102
+/svn/!svn/ver/421/trunk/libraries/GCS_MAVLink/include/mavlink/v0.9/ardupilotmega/mavlink_msg_meminfo.h
+END
+mavlink_msg_digicam_control.h
+K 25
+svn:wc:ra_dav:version-url
+V 110
+/svn/!svn/ver/421/trunk/libraries/GCS_MAVLink/include/mavlink/v0.9/ardupilotmega/mavlink_msg_digicam_control.h
+END
+mavlink_msg_ahrs.h
+K 25
+svn:wc:ra_dav:version-url
+V 99
+/svn/!svn/ver/421/trunk/libraries/GCS_MAVLink/include/mavlink/v0.9/ardupilotmega/mavlink_msg_ahrs.h
+END
+mavlink_msg_radio.h
+K 25
+svn:wc:ra_dav:version-url
+V 100
+/svn/!svn/ver/421/trunk/libraries/GCS_MAVLink/include/mavlink/v0.9/ardupilotmega/mavlink_msg_radio.h
+END
+mavlink_msg_digicam_configure.h
+K 25
+svn:wc:ra_dav:version-url
+V 112
+/svn/!svn/ver/421/trunk/libraries/GCS_MAVLink/include/mavlink/v0.9/ardupilotmega/mavlink_msg_digicam_configure.h
+END
+version.h
+K 25
+svn:wc:ra_dav:version-url
+V 90
+/svn/!svn/ver/421/trunk/libraries/GCS_MAVLink/include/mavlink/v0.9/ardupilotmega/version.h
+END

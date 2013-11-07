@@ -1,0 +1,59 @@
+K 25
+svn:wc:ra_dav:version-url
+V 70
+/svn/!svn/ver/421/trunk/libraries/GCS_MAVLink/message_definitions_v1.0
+END
+sensesoar.xml
+K 25
+svn:wc:ra_dav:version-url
+V 84
+/svn/!svn/ver/421/trunk/libraries/GCS_MAVLink/message_definitions_v1.0/sensesoar.xml
+END
+minimal.xml
+K 25
+svn:wc:ra_dav:version-url
+V 82
+/svn/!svn/ver/421/trunk/libraries/GCS_MAVLink/message_definitions_v1.0/minimal.xml
+END
+common.xml
+K 25
+svn:wc:ra_dav:version-url
+V 81
+/svn/!svn/ver/421/trunk/libraries/GCS_MAVLink/message_definitions_v1.0/common.xml
+END
+pixhawk.xml
+K 25
+svn:wc:ra_dav:version-url
+V 82
+/svn/!svn/ver/421/trunk/libraries/GCS_MAVLink/message_definitions_v1.0/pixhawk.xml
+END
+matrixpilot.xml
+K 25
+svn:wc:ra_dav:version-url
+V 86
+/svn/!svn/ver/421/trunk/libraries/GCS_MAVLink/message_definitions_v1.0/matrixpilot.xml
+END
+ardupilotmega.xml
+K 25
+svn:wc:ra_dav:version-url
+V 88
+/svn/!svn/ver/421/trunk/libraries/GCS_MAVLink/message_definitions_v1.0/ardupilotmega.xml
+END
+slugs.xml
+K 25
+svn:wc:ra_dav:version-url
+V 80
+/svn/!svn/ver/421/trunk/libraries/GCS_MAVLink/message_definitions_v1.0/slugs.xml
+END
+ualberta.xml
+K 25
+svn:wc:ra_dav:version-url
+V 83
+/svn/!svn/ver/421/trunk/libraries/GCS_MAVLink/message_definitions_v1.0/ualberta.xml
+END
+test.xml
+K 25
+svn:wc:ra_dav:version-url
+V 79
+/svn/!svn/ver/421/trunk/libraries/GCS_MAVLink/message_definitions_v1.0/test.xml
+END
