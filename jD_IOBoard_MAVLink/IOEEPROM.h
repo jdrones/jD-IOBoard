@@ -98,7 +98,7 @@
 #define FLASH_IO_ADDR 132
 #define LEDPIN_IO_ADDR 133
 
-#define ISFRSKY 140
+#define ISFRSKY 140       // FrSky bridge active yes/no flag
 
 #define Batt_SR_ADDR 150  // battery status
 #define Batt_DR_ADDR 151  // battery data

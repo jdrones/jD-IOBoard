@@ -160,6 +160,7 @@ byte ledPin;    // Heartbeat LED place holder if any
 
 byte BattAlarmPercentage; 
 
+byte isFrSky;
 
 // Left/Right static patterns
 static byte le_patt[8][16] = {

@@ -136,9 +136,7 @@ void writeFactorySettings() {
  writeEEPROM(FLASH_IO_ADDR, 0);    // Future extra flasher 
  writeEEPROM(LEDPIN_IO_ADDR, 10);  // HeartBeat LEDPIN, should be 13 
 
-
-
- writeEEPROM(ISFRSKY, 1);           // Activate FrSky protocol output from D5, D6
+ writeEEPROM(ISFRSKY, 1);           // Activate FrSky protocol output from D5, D6. By default yes
  
  writeEEPROM(BatteryAlarm_Percentage_ADDR, 15);  // Percentage to trigger battery alarm, default minvoltage + 15% 
 

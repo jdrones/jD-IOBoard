@@ -405,6 +405,9 @@ debug = 4;
   ledPin = readEEPROM(LEDPIN_IO_ADDR);
     
   BattAlarmPercentage = readEEPROM(BatteryAlarm_Percentage_ADDR);  
+  
+  // FrSky Bridge active or not
+  isFrSky = readEEPROM(ISFRSKY);
     
   // setup mavlink port
   mavlink_comm_0_port = &Serial;
@@ -545,7 +548,7 @@ void loop()
     mavlinkTimer.Run();
 
     updatePWM(); 
-    update_FrSky();
+    if(isFrSky) update_FrSky();   // if isFrSky = TRUE, Construct FrSky Telemetry packet and send out
     
     //-----Operat Altiude uadate iob_alt
    if( Alti_SR.En_Alt!=1)   //Wait!! Arm==1
