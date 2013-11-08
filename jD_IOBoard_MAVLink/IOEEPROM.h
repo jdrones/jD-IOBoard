@@ -99,6 +99,7 @@
 #define LEDPIN_IO_ADDR 133
 
 #define ISFRSKY 140       // FrSky bridge active yes/no flag
+#define FACTORY_RESET 141
 
 #define Batt_SR_ADDR 150  // battery status
 #define Batt_DR_ADDR 151  // battery data
@@ -108,7 +109,6 @@
 #define CHK1 1000
 #define CHK2 1006
 #define VERS 1010
-#define FACTORY_RESET 1020
 
 #define EEPROM_MAX_ADDR 1023 // This is maximum for atmel 328 chip
 

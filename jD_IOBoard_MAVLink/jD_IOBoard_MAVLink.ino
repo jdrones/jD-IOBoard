@@ -163,7 +163,7 @@
 #include "IOEEPROM.h"
 
 //#define DUMPEEPROM            // Should not be activated in repository code, only for debug
-//#define DUMPEEPROMTELEMETRY   // Should not be activated in repository code, only for debug
+#define DUMPEEPROMTELEMETRY   // Should not be activated in repository code, only for debug
 #define NEWPAT
 //#define HWRESET
 
@@ -373,7 +373,6 @@ debug = 4;
   if(readEEPROM(FACTORY_RESET)) {
 #ifdef DUMPEEPROMTELEMETRY
     Serial.print("Factory reset flag: ");
-    Serial.print();
     Serial.print(FACTORY_RESET);
 #endif    
     // Write factory settings on EEPROM
