@@ -48,6 +48,9 @@
  
  */
 
+////////////////////////////////////////////////////////////
+// update_FrSky() constructing FrSky data packets
+//
 void update_FrSky() {
 //DPL("fr");
   f_curMillis = millis();
@@ -129,7 +132,9 @@ void update_FrSky() {
   }
 }
 
-
+////////////////////////////////////////////////////////////
+// addPayload() FrSky datapacket payloads
+//
 byte addPayload(byte DataID) {
   
 //  int test = 0;
@@ -495,6 +500,9 @@ long FixInt(long val, byte mp) {
    return val % 256;  
 }
 
+////////////////////////////////////////////////////////////
+// ShowPayload() debug function to show constructed payload
+//
 void ShowPayload() {
 #ifdef SERDB  
    DPN("PL: ");
@@ -505,7 +513,9 @@ void ShowPayload() {
 #endif
 }
 
-
+////////////////////////////////////////////////////////////
+// updateTime() Time counters for FrSky telemetry
+//
 void updateTime() {
   if(second >= 60) {
     second = 0;
@@ -523,7 +533,10 @@ void updateTime() {
    }
 }
 
-// Temporary debug funcs
+////////////////////////////////////////////////////////////
+// pp() Temporary debug function. Fills HEX output with
+//      leading 0 if output is between 0 - 9
+//
 void pp (byte frameByte) {
 #ifdef SERDB
   if(frameByte <= 9) DPN("0");

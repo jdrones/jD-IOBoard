@@ -170,8 +170,8 @@
 /* *************************************************/
 /* ***************** DEFINITIONS *******************/
 
-#define VER "v0.5"
-#define CHKVER 42
+#define VER "v0.5"   // Software version
+#define CHKVER 42    // Version number to check from EEPROM
 
 // These are not in real use, just for reference
 //#define O1 8      // High power Output 1
@@ -284,7 +284,7 @@ FastSerialPort0(Serial);
 SimpleTimer  mavlinkTimer;
 
 #ifdef FRSER
-SoftwareSerial frSerial(6,5,true);
+SoftwareSerial frSerial(6,5,true);     // Initializing FrSky Serial on pins 5,6 and Inverted Serial
 #endif
 
 #ifdef SERDB
@@ -405,7 +405,8 @@ debug = 4;
   FRONT = readEEPROM(FRONT_IO_ADDR);  // FRONT output location in Out[] array
   REAR = readEEPROM(REAR_IO_ADDR);    // REAR output location in Out[] array
   ledPin = readEEPROM(LEDPIN_IO_ADDR);
-    
+  
+  // Percentage value to calculate Low Battery Alarm  
   BattAlarmPercentage = readEEPROM(BatteryAlarm_Percentage_ADDR);  
   
   // FrSky Bridge active or not
@@ -419,11 +420,12 @@ debug = 4;
     pinMode(Out[looper],OUTPUT);
   }
 
-  // Initial 
+  // Initial startup LED sequence
   for(int loopy = 0; loopy <= 5; loopy++) {
    SlowRoll(25); 
   }
 
+  // Initial startup LED sequence continues
   for(int loopy = 0; loopy <= 2 ; loopy++) {
     AllOn();
     delay(100);

@@ -70,7 +70,7 @@ static int counter = 0;     // General counter
 static int Out[] = {0,8,9,10,4,3,2};   // Output I/O pin array
 static int IOState[] = {0,0,0,0,0,0};
 
-static byte patt_pos;
+static byte patt_pos;  // Current pattern position holder
 static byte patt;
 static byte pattByteA;
 static byte pattByteB;
@@ -134,7 +134,7 @@ byte iob_lon_dir;
 
 int iob_ampbatt_A;
 
-static float deg_dat;
+static float deg_dat;  
 static float dec_deg;
 static float min_dat;
 static float dec_min;
@@ -146,21 +146,21 @@ static float sec_dat;
 int tempvar;      // Temporary variable used on many places around the IOBoard
 
 // General states
-byte flMode;      // Our current flight mode as defined
-byte isArmed = 0;
-byte isArmedOld = 0;
-byte isActive;
+byte flMode;          // Our current flight mode as defined
+byte isArmed = 0;     // Is motors armed flag
+byte isArmedOld = 0;  // Earlier Armed status flag
+byte isActive;        // Is MAVLink active flag
 
 // OUTPUT LED dynamic place holders
-byte LEFT;
-byte RIGHT;
-byte FRONT;
-byte REAR;
+byte LEFT;      // Pointer to Out[] array for LEFT Output LED
+byte RIGHT;     // Pointer to Out[] array for RIGHT Output LED
+byte FRONT;     // Pointer to Out[] array for FRONT Output LED
+byte REAR;      // Pointer to Out[] array for REAR Output LED
 byte ledPin;    // Heartbeat LED place holder if any
 
-byte BattAlarmPercentage; 
+byte BattAlarmPercentage;  // Percentage value to calculate LOW Voltage Alarm
 
-byte isFrSky;
+byte isFrSky;  // FrSky telemetry on/off flag
 
 // Left/Right static patterns
 static byte le_patt[8][16] = {
