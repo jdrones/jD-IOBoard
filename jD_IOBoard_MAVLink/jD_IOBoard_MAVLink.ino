@@ -163,7 +163,7 @@
 #include "IOEEPROM.h"
 
 //#define DUMPEEPROM            // Should not be activated in repository code, only for debug
-#define DUMPEEPROMTELEMETRY   // Should not be activated in repository code, only for debug
+//#define DUMPEEPROMTELEMETRY   // Should not be activated in repository code, only for debug
 #define NEWPAT
 //#define HWRESET
 
@@ -171,7 +171,7 @@
 /* ***************** DEFINITIONS *******************/
 
 #define VER "v0.5"   // Software version
-#define CHKVER 42    // Version number to check from EEPROM
+#define CHKVER 43    // Version number to check from EEPROM
 
 // These are not in real use, just for reference
 //#define O1 8      // High power Output 1
@@ -370,6 +370,19 @@ debug = 4;
     DPL(" done.");
   }
  
+  if(readEEPROM(FACTORY_RESET) {
+#ifdef DUMPEEPROMTELEMETRY
+    Serial.print("Factory reset flag: ");
+    Serial.print();
+    Serial.print(FACTORY_RESET);
+#endif    
+    // Write factory settings on EEPROM
+    DPN("Writing EEPROM...");
+    writeFactorySettings();
+    DPL(" done.");
+  }
+    
+ 
 #ifdef DUMPEEPROM
   // For debug needs, should never be activated on real-life
   for(int edump = 0; edump <= 24; edump ++) {
@@ -397,6 +410,12 @@ debug = 4;
    Serial.print(" VALUE: ");
    Serial.println(readEEPROM(edump), DEC);     
   }
+  for(int edump = 1000; edump <= 1023; edump ++) {
+   Serial.print("EEPROM SLOT: ");
+   Serial.print(edump);
+   Serial.print(" VALUE: ");
+   Serial.println(readEEPROM(edump), DEC);     
+  }  
 #endif
     
   // Rear most important values from EEPROM to their variables  

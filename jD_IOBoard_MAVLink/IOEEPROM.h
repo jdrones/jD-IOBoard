@@ -108,8 +108,9 @@
 #define CHK1 1000
 #define CHK2 1006
 #define VERS 1010
+#define FACTORY_RESET 1020
 
-#define EEPROM_MAX_ADDR 1024 // This is maximum for atmel 328 chip
+#define EEPROM_MAX_ADDR 1023 // This is maximum for atmel 328 chip
 
 
 

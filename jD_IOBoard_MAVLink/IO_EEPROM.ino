@@ -141,6 +141,10 @@ void writeFactorySettings() {
  writeEEPROM(BatteryAlarm_Percentage_ADDR, 15);  // Percentage to trigger battery alarm, default minvoltage + 15% 
 
  // Write details for versioncheck to EEPROM
- writeEEPROM(CHK1, 21);
+ writeEEPROM(CHK1, 22);
  writeEEPROM(CHK2, 21);
+ writeEEPROM(VERS, CHKVER);
+ 
+ // Factory reset request flag 
+ writeEEPROM(FACTORY_RESET, 0);
 }
