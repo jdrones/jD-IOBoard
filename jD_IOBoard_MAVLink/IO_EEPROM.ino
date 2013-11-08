@@ -144,6 +144,7 @@ void writeFactorySettings() {
  writeEEPROM(CHK1, 22);
  writeEEPROM(CHK2, 21);
  writeEEPROM(VERS, CHKVER);
+ writeEEPROM(SWVER, VER * 10);
  
  // Factory reset request flag 
  writeEEPROM(FACTORY_RESET, 0);

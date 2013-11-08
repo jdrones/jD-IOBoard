@@ -170,7 +170,7 @@
 /* *************************************************/
 /* ***************** DEFINITIONS *******************/
 
-#define VER "v0.5"   // Software version
+#define VER 0.5   // Software version
 #define CHKVER 43    // Version number to check from EEPROM
 
 // These are not in real use, just for reference
