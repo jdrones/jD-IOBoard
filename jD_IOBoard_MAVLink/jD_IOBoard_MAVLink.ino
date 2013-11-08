@@ -370,7 +370,7 @@ debug = 4;
     DPL(" done.");
   }
  
-  if(readEEPROM(FACTORY_RESET) {
+  if(readEEPROM(FACTORY_RESET)) {
 #ifdef DUMPEEPROMTELEMETRY
     Serial.print("Factory reset flag: ");
     Serial.print();
